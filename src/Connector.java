@@ -7,7 +7,7 @@ public class Connector {
 
         String url = "jdbc:mysql://localhost:3306/spaceimt";
         String username = "root";
-        String password = "eduardo310";
+        String password = "";
         Connection conn = null;
 
         try {
@@ -17,5 +17,4 @@ public class Connector {
         }
         return conn;
     }
-    
 }
