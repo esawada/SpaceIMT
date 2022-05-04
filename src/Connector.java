@@ -8,13 +8,13 @@ public class Connector {
         String url = "jdbc:mysql://localhost:3306/spaceimt";
         String username = "root";
         String password = "";
-        Connection conn = null;
+        Connection con = null;
 
         try {
-            conn = DriverManager.getConnection(url, username, password);
+            con = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return conn;
+        return con;
     }
 }
