@@ -1,3 +1,5 @@
+package jogo;
+
 import javax.swing.JFrame;
 
 public class MainJogo {

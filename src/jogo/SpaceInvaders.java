@@ -1,5 +1,7 @@
-import java.awt.Color;
+package jogo;
+
 import java.awt.Font;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -11,6 +13,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import classesObj.Explosao;
+import classesObj.Nave;
+import classesObj.Tiro;
+import classesObj.Inimigo;
 
 public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 	

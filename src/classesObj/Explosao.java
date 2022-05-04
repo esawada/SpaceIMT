@@ -1,5 +1,7 @@
-import java.awt.Graphics2D;
+package classesObj;
+
 import java.awt.image.BufferedImage;
+import java.awt.Graphics2D;
 
 public class Explosao {
 	
