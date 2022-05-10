@@ -1,5 +1,7 @@
-import java.awt.Color;
+package jogo;
+
 import java.awt.Font;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -9,10 +11,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
-
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import classesObj.Explosao;
+import classesObj.Nave;
+import classesObj.Tiro;
+import classesObj.Inimigo;
 
 public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 	
@@ -44,7 +48,7 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 			imagemInimigo = ImageIO.read(new File("imagem/inimigo.png"));
 			ImagemExplosao = ImageIO.read(new File("imagem/Explosao.png"));
 		}catch(IOException e) {
-			System.out.println("Não carregou a imagem");
+			System.out.println("Nï¿½o carregou a imagem");
 			e.printStackTrace();
 		}
 		
@@ -121,7 +125,7 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 		for (int i = 0; i < inimigos.size(); i++) {
 			if (inimigos.get(i).getX()<= 0 || inimigos.get(i).getX() >= 1366 - 50){
 				for (int j = 0; j < inimigos.size(); j++) {
-					inimigos.get(j).trocaDireção();	
+					inimigos.get(j).trocaDirecao();	
 				}
 				break;
 			}
@@ -174,7 +178,7 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 		if(ganhou) {
 			g.setColor(Color.white);
 			g.setFont(minhaFonte);
-			g.drawString("Você Ganhou!! Fechando em " + FechandoEm + " segundos.", 450, 400);
+			g.drawString("Vocï¿½ Ganhou!! Fechando em " + FechandoEm + " segundos.", 450, 400);
 			
 			FechandoEm -= 0.016666f;
 			if(FechandoEm <= 0) {
@@ -186,7 +190,7 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 		if (perdeu) {
 			g.setColor(Color.red);
 			g.setFont(minhaFonte);
-			g.drawString("Você Perdeu :( !! Fechando em " + FechandoEm + " segundos.", 450, 400);
+			g.drawString("Vocï¿½ Perdeu :( !! Fechando em " + FechandoEm + " segundos.", 450, 400);
 			
 			FechandoEm -= 0.016666f;
 			if(FechandoEm <= 0) {
