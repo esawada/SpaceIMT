@@ -14,7 +14,7 @@ public class ConexaoDAO {
     public Connection conectaBD (){
         Connection conn = null;
         try {
-           String url = "jdbc:mysql://localhost:3306/spaceimt?user=root&password=isabella123";
+           String url = "jdbc:mysql://localhost:3306/spaceimt?user=root&password=isabella123?useTimezone=true&serverTimezone=UTC";
            conn = DriverManager.getConnection(url);
            
                    

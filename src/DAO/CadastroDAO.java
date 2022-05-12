@@ -23,6 +23,7 @@ public class CadastroDAO {
             
             pstm.execute();
             pstm.close();
+            conn.close();
 
         } catch (Exception erro) {
 
