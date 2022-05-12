@@ -1,37 +1,40 @@
-package classesObj;
-
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 
 public class Inimigo{
 	
 	private BufferedImage desenho;
+	
 	private int x;
 	private int y;
 	private int velocidade;
-	private int direcao;
+	private int direção;
 	
 	
-	public Inimigo(BufferedImage imagem, int inicioX, int inicioY, int direcao){
+	public Inimigo(BufferedImage imagem, int inicioX, int inicioY, int direção){
 		
 		this.desenho = imagem;
 		this.x = inicioX;
 		this.y = inicioY;
-		this.direcao = direcao;
+		this.direção = direção;
 		this.velocidade = 4;
 	}
 	
 	public void atualizar() {
 		
-		x += velocidade * direcao;
+		x += velocidade * direção;
 		
 	}
 	
 	
 	
-	public void trocaDirecao() {
-		 direcao = direcao * -1;
-		 y +=25;
+	public void trocaDireção() {
+		 direção = direção * -1;
+		 y +=40;
 	}
 	
 	public int getX() {

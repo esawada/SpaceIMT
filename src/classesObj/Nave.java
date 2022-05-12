@@ -1,11 +1,9 @@
-package classesObj;
-
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
+
 
 public class Nave {
 	
@@ -22,13 +20,13 @@ public class Nave {
 		try {
 			desenho = ImageIO.read(new File("Imagem/Nave.png"));
 		} catch (IOException e) {
-			System.out.println("Nï¿½o foi possivel carregar a imagem");
+			System.out.println("Não foi possivel carregar a imagem");
 			e.printStackTrace();
 		}
 		
 		
 		x = 640;
-		velocidade = 5;
+		velocidade = 7;
 		podeAtirar = true;
 		recarregando = 0;
 		

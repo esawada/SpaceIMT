@@ -1,5 +1,3 @@
-package jogo;
-
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -15,9 +13,9 @@ public class PlanoDeFundo {
 	public PlanoDeFundo() {
 		
 		try {
-		imagem = ImageIO.read(new File("imagem/fundo.png"));
+		imagem = ImageIO.read(new File("imagem/fundo2.png"));
 		}catch (IOException e) {
-			System.out.println("Nï¿½o carregou imagem");
+			System.out.println("Não carregou imagem");
 			e.printStackTrace();
 		}
 		y = 0; 

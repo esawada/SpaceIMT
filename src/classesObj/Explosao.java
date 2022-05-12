@@ -1,14 +1,12 @@
-package classesObj;
-
-import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 public class Explosao {
 	
 	private BufferedImage imagem;
 	private int x, y;
-	private int duracao;
-	private int animacaoTotal;
+	private int duração;
+	private int animaçãoTotal;
 	private int linha;
 	private int coluna;
 	
@@ -17,18 +15,18 @@ public class Explosao {
 		this.imagem = imagem;
 		this.x = x;
 		this.y = y;
-		duracao = 70;
+		duração = 40;
 		linha = 0;
 		coluna = 0;
-		animacaoTotal = 120;
+		animaçãoTotal = 140;
 	}
 	
 	public void atualizar() {
 		
-		duracao--;
+		duração--;
 		
-		linha = 6 - duracao / 10;
-		System.out.println("linha");
+		//linha = 6 - duração / 10;
+		//System.out.println("linha");
 		
 	}
 	
@@ -37,7 +35,7 @@ public class Explosao {
 		g.drawImage(imagem, x, y, x + 50, y + 50, 0, 198 * linha, 198, 198 * linha + 198, null);	
 	}
 	public boolean acabou() {
-		if(duracao <= 0)
+		if(duração <= 0)
 			return true;
 		
 		return false;

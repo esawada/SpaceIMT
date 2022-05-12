@@ -1,5 +1,3 @@
-package classesObj;
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 
@@ -17,7 +15,7 @@ public class Tiro {
 		
 		this.x = inicioX;
 		this.y = inicioY;
-		velocidade = 10;
+		velocidade = 15;
 		
 	}
 	

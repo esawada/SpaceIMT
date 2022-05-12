@@ -1,7 +1,5 @@
-package jogo;
-
-import java.awt.Font;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -11,12 +9,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-import classesObj.Explosao;
-import classesObj.Nave;
-import classesObj.Tiro;
-import classesObj.Inimigo;
+
 
 public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 	
@@ -43,18 +39,27 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 		
 		
 		BufferedImage imagemInimigo = null;
+		BufferedImage imagemInimigo2 = null;
+		BufferedImage imagemInimigo3 = null;
+		BufferedImage imagemInimigo4 = null;
 		
 		try {
-			imagemInimigo = ImageIO.read(new File("imagem/inimigo.png"));
+			imagemInimigo = ImageIO.read(new File("imagem/A.png"));
+			imagemInimigo2 = ImageIO.read(new File("imagem/B.png"));
+			imagemInimigo3 = ImageIO.read(new File("imagem/C.png"));
+			imagemInimigo4= ImageIO.read(new File("imagem/D.png"));
 			ImagemExplosao = ImageIO.read(new File("imagem/Explosao.png"));
 		}catch(IOException e) {
-			System.out.println("Nï¿½o carregou a imagem");
+			System.out.println("Não carregou a imagem");
 			e.printStackTrace();
 		}
 		
-		for(int i = 0; i < 4; i++) {
-			inimigos.add(new Inimigo(imagemInimigo, 10 + i%20 * 200, 50 + i/10 * 50, 1));
-		}
+//		for(int i = 0; i < 4; i++) {
+			inimigos.add(new Inimigo(imagemInimigo, 10 + 0%20 * 200, 50 + 0/10 * 50, 1));
+			inimigos.add(new Inimigo(imagemInimigo2, 10 + 1%20 * 200, 50 + 1/10 * 50, 1));
+			inimigos.add(new Inimigo(imagemInimigo3, 10 + 2%20 * 200, 50 + 2/10 * 50, 1));
+			inimigos.add(new Inimigo(imagemInimigo4, 10 + 3%20 * 200, 50 + 3/10 * 50, 1));
+//		}
 		
 		Thread LacoDoJogo =  new Thread(this);
 		LacoDoJogo.start();
@@ -125,7 +130,7 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 		for (int i = 0; i < inimigos.size(); i++) {
 			if (inimigos.get(i).getX()<= 0 || inimigos.get(i).getX() >= 1366 - 50){
 				for (int j = 0; j < inimigos.size(); j++) {
-					inimigos.get(j).trocaDirecao();	
+					inimigos.get(j).trocaDireção();	
 				}
 				break;
 			}
@@ -178,7 +183,7 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 		if(ganhou) {
 			g.setColor(Color.white);
 			g.setFont(minhaFonte);
-			g.drawString("Vocï¿½ Ganhou!! Fechando em " + FechandoEm + " segundos.", 450, 400);
+			g.drawString("Você Ganhou!! Fechando em " + FechandoEm + " segundos.", 450, 400);
 			
 			FechandoEm -= 0.016666f;
 			if(FechandoEm <= 0) {
@@ -190,7 +195,7 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 		if (perdeu) {
 			g.setColor(Color.red);
 			g.setFont(minhaFonte);
-			g.drawString("Vocï¿½ Perdeu :( !! Fechando em " + FechandoEm + " segundos.", 450, 400);
+			g.drawString("Você Perdeu :( !! Fechando em " + FechandoEm + " segundos.", 450, 400);
 			
 			FechandoEm -= 0.016666f;
 			if(FechandoEm <= 0) {
@@ -211,10 +216,10 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode()== KeyEvent.VK_D) {
+		if(e.getKeyCode()== KeyEvent.VK_RIGHT) {
 			direcao = 1;
 		}
-		if(e.getKeyCode()== KeyEvent.VK_A) {
+		if(e.getKeyCode()== KeyEvent.VK_LEFT) {
 			direcao = -1;
 		}
 		if(e.getKeyCode()== KeyEvent.VK_SPACE && nave.podeAtirar()) {
@@ -225,10 +230,10 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if(e.getKeyCode()== KeyEvent.VK_D) {
+		if(e.getKeyCode()== KeyEvent.VK_RIGHT) {
 			direcao = 0;
 		}
-		if(e.getKeyCode()== KeyEvent.VK_A) {
+		if(e.getKeyCode()== KeyEvent.VK_LEFT) {
 			direcao = 0;
 		}
 		
