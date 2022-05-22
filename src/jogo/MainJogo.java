@@ -1,8 +1,5 @@
-import java.awt.DisplayMode;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+package jogo;
+
 import java.util.Timer;
 
 import javax.swing.JFrame;
@@ -24,12 +21,12 @@ public class MainJogo {
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		SpaceInvaders invasãoAlien = new SpaceInvaders();
-		invasãoAlien.setBounds(0, 0, 1366, 768);
+		SpaceInvaders invasaoAlien = new SpaceInvaders();
+		invasaoAlien.setBounds(0, 0, 1366, 768);
 		
-		janela.add(invasãoAlien);
+		janela.add(invasaoAlien);
 		
-		janela.addKeyListener(invasãoAlien);
+		janela.addKeyListener(invasaoAlien);
 		
 		janela.setVisible(true);
 		

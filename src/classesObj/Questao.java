@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import dataBase.Connector;
+
+import dataBase.ConnectionFactory;
 
 public class Questao{
     public int id;
@@ -21,7 +22,7 @@ public class Questao{
 
         String sql = "SELECT * FROM questao WHERE idQuestao = ? ";
         Questao questao = new Questao();
-        Connection con = Connector.connect();
+        Connection con = ConnectionFactory.getConnection();
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
 
@@ -50,7 +51,7 @@ public class Questao{
 
         String sql = "SELECT * FROM questao WHERE dificuldade = ? ORDER BY rand() LIMIT 1;";
         Questao questao = new Questao();
-        Connection con = Connector.connect();
+        Connection con = ConnectionFactory.getConnection();
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
 

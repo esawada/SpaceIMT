@@ -3,13 +3,13 @@ package dataBase;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class Connector {
+public class ConnectionFactory {
     
-    public static Connection connect() {
+    public static Connection getConnection() {
 
         String url = "jdbc:mysql://localhost:3306/spaceimt";
         String username = "root";
-        String password = "";
+        String password = "eduardo310";
         Connection con = null;
 
         try {

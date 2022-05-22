@@ -1,6 +1,8 @@
 package DAO;
 
 import DTO.CadastroDTO;
+import dataBase.ConnectionFactory;
+
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
@@ -13,7 +15,7 @@ public class CadastroDAO {
     public void cadastrarUsuario(CadastroDTO objcadastrardto) {
         String sql = "insert into usuario( senha, email, nickname) values (?,?,?)";
 
-        conn = new ConexaoDAO().conectaBD();
+        conn = ConnectionFactory.getConnection();
 
         try {
             pstm = conn.prepareStatement(sql);
