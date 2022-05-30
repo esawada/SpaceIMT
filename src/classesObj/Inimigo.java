@@ -11,15 +11,17 @@ public class Inimigo{
 	private int y;
 	private int velocidade;
 	private int direcao;
+	private String alternativa;
 	
 	
-	public Inimigo(BufferedImage imagem, int inicioX, int inicioY, int direcao){
+	public Inimigo(BufferedImage imagem, int inicioX, int inicioY, int direcao, String alternativa){
 		
 		this.desenho = imagem;
 		this.x = inicioX;
 		this.y = inicioY;
 		this.direcao = direcao;
 		this.velocidade = 4;
+		this.alternativa = alternativa;
 	}
 	
 	public void atualizar() {
@@ -33,6 +35,10 @@ public class Inimigo{
 	public void trocaDirecao() {
 		 direcao = direcao * -1;
 		 y +=40;
+	}
+
+	public String getAlterernativa() {
+		return alternativa;
 	}
 	
 	public int getX() {

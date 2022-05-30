@@ -11,9 +11,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import classesObj.Nave;
+import classesObj.Questao;
 import classesObj.Tiro;
 import classesObj.Inimigo;
 import classesObj.Explosao;
@@ -29,9 +33,12 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 	private ArrayList<Explosao> explosoes;
 	private PlanoDeFundo fundo;
 	private boolean ganhou;
+	private boolean selecionado;
 	private float FechandoEm = 10; 
 	private boolean perdeu;
 	private BufferedImage ImagemExplosao;
+	private List<String> listaDeAlternativas;
+	private Questao questao;
 	
 	public SpaceInvaders() {
 		nave = new Nave();
@@ -41,30 +48,33 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 		fundo = new PlanoDeFundo();
 		ganhou = false; 
 		perdeu = false;
+		selecionado = false;
+		questao = new Questao();
+		listaDeAlternativas = new ArrayList<>();
+		questao = Questao.getQuestaoAleatoriaByDificuldade(0);
+		listaDeAlternativas = Questao.getAltEmbaralhadas(questao);
 		
 		
-		BufferedImage imagemInimigo = null;
-		BufferedImage imagemInimigo2 = null;
-		BufferedImage imagemInimigo3 = null;
-		BufferedImage imagemInimigo4 = null;
+		BufferedImage imagemInimigoA = null;
+		BufferedImage imagemInimigoB = null;
+		BufferedImage imagemInimigoC = null;
+		BufferedImage imagemInimigoD = null;
 		
 		try {
-			imagemInimigo = ImageIO.read(new File("imagem/A.png"));
-			imagemInimigo2 = ImageIO.read(new File("imagem/B.png"));
-			imagemInimigo3 = ImageIO.read(new File("imagem/C.png"));
-			imagemInimigo4= ImageIO.read(new File("imagem/D.png"));
+			imagemInimigoA = ImageIO.read(new File("imagem/A.png"));
+			imagemInimigoB = ImageIO.read(new File("imagem/B.png"));
+			imagemInimigoC = ImageIO.read(new File("imagem/C.png"));
+			imagemInimigoD = ImageIO.read(new File("imagem/D.png"));
 			ImagemExplosao = ImageIO.read(new File("imagem/Explosao.png"));
 		}catch(IOException e) {
 			System.out.println("N�o carregou a imagem");
 			e.printStackTrace();
 		}
-		
-//		for(int i = 0; i < 4; i++) {
-			inimigos.add(new Inimigo(imagemInimigo, 10 + 0%20 * 200, 50 + 0/10 * 50, 1));
-			inimigos.add(new Inimigo(imagemInimigo2, 10 + 1%20 * 200, 50 + 1/10 * 50, 1));
-			inimigos.add(new Inimigo(imagemInimigo3, 10 + 2%20 * 200, 50 + 2/10 * 50, 1));
-			inimigos.add(new Inimigo(imagemInimigo4, 10 + 3%20 * 200, 50 + 3/10 * 50, 1));
-//		}
+
+			inimigos.add(new Inimigo(imagemInimigoA, 10 + 0%20 * 300, 50 + 0/10 * 50 + 100, 1, listaDeAlternativas.get(1)));
+			inimigos.add(new Inimigo(imagemInimigoB, 10 + 1%20 * 300, 50 + 1/10 * 50 + 100, 1, listaDeAlternativas.get(2)));
+			inimigos.add(new Inimigo(imagemInimigoC, 10 + 2%20 * 300, 50 + 2/10 * 50 + 100, 1, listaDeAlternativas.get(3)));
+			inimigos.add(new Inimigo(imagemInimigoD, 10 + 3%20 * 300, 50 + 3/10 * 50 + 100, 1, listaDeAlternativas.get(4)));
 		
 		Thread LacoDoJogo =  new Thread(this);
 		LacoDoJogo.start();
@@ -92,9 +102,9 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 	
 	private void update() {
 		
-		if (inimigos.size() == 0) {
-			ganhou = true;
-		}
+		// if (inimigos.size() == 0) {
+		// 	ganhou = true;
+		// }
 		nave.movimento(direcao);
 		
 		for (int i = 0; i < inimigos.size(); i++) {
@@ -119,6 +129,10 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 						
 					explosoes.add(new Explosao(ImagemExplosao,inimigos.get(j).getX(), inimigos.get(j).getY()));
 					
+					if(inimigos.get(j).getAlterernativa().equals(questao.getAltCorreta()))
+						ganhou = true;
+					else
+						perdeu = true;
 					inimigos.remove(j);
 					j--; 
 					
@@ -184,11 +198,20 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 		for ( int i = 0; i < tiros.size(); i++) {
 			tiros.get(i).pintar(g);
 		}
-		
+
+		//desenha alternativas
+		g.setColor(Color.white);
+		g.setFont(minhaFonte);
+		g.drawString(listaDeAlternativas.get(0), 10 + 0%20 * 200,30 + 0/10 * 50);
+		g.drawString("A : " + listaDeAlternativas.get(1), 10 + 0%20 * 200, 0/10 * 50 + 60);
+		g.drawString("B : " + listaDeAlternativas.get(2), 10 + 0%20 * 200, 0/10 * 50 + 90);
+		g.drawString("C : " + listaDeAlternativas.get(3), 10 + 3%20 * 200, 0/10 * 50 + 60);
+		g.drawString("D : " + listaDeAlternativas.get(4), 10 + 3%20 * 200, 0/10 * 50 + 90);
+			
 		if(ganhou) {
 			g.setColor(Color.white);
 			g.setFont(minhaFonte);
-			g.drawString("Voc� Ganhou!! Fechando em " + FechandoEm + " segundos.", 450, 400);
+			g.drawString("Você Ganhou!! Fechando em " + FechandoEm + " segundos.", 450, 400);
 			
 			FechandoEm -= 0.016666f;
 			if(FechandoEm <= 0) {
@@ -200,7 +223,7 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 		if (perdeu) {
 			g.setColor(Color.red);
 			g.setFont(minhaFonte);
-			g.drawString("Voc� Perdeu :( !! Fechando em " + FechandoEm + " segundos.", 450, 400);
+			g.drawString("Você Perdeu :( !! Fechando em " + FechandoEm + " segundos.", 450, 400);
 			
 			FechandoEm -= 0.016666f;
 			if(FechandoEm <= 0) {

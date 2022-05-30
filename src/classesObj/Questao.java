@@ -10,13 +10,17 @@ import java.util.List;
 import dataBase.ConnectionFactory;
 
 public class Questao{
-    public int id;
-    public String alt1;
-    public String alt2;
-    public String alt3;
-    public String altCorreta;
-    public String pergunta;
-    public int dificuldade;
+    private int id;
+    private String alt1;
+    private String alt2;
+    private String alt3;
+    private String altCorreta;
+    private String pergunta;
+    private int dificuldade;
+
+    public String getAltCorreta() {
+        return this.altCorreta;
+    }
 
     public Questao getQuestaoByID(int idQuestao) {
 
@@ -47,7 +51,7 @@ public class Questao{
         return questao;
         }
 
-    public Questao getQuestaoAleatoriaByDificuldade(int dificuldade) {
+    public static Questao getQuestaoAleatoriaByDificuldade(int dificuldade) {
 
         String sql = "SELECT * FROM questao WHERE dificuldade = ? ORDER BY rand() LIMIT 1;";
         Questao questao = new Questao();
@@ -76,11 +80,9 @@ public class Questao{
         return questao;
         }
 
-        public List<String> getAltEmparalhadas(int dificuldade) {
-            Questao questao = new Questao();
+        public static List<String> getAltEmbaralhadas(Questao questao) {
             List<String> listaQuestao = new ArrayList<>();
             List<String> alternativas = new ArrayList<>();
-            questao = getQuestaoAleatoriaByDificuldade(dificuldade);
             listaQuestao.add(questao.pergunta);
             Collections.addAll(alternativas, questao.altCorreta, questao.alt1, questao.alt2, questao.alt3);
             Collections.shuffle(alternativas);
