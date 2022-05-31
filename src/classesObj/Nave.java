@@ -62,4 +62,8 @@ public class Nave {
 	public boolean podeAtirar() {
 		return podeAtirar;
 	}
+	
+	public void setPodeAtirar(boolean podeAtirar) {
+		this.podeAtirar = podeAtirar;
+	}
 }

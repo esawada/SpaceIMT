@@ -13,7 +13,7 @@ public class MainJogo {
 			
 	public static void main (String[] args) {
 		
-		JFrame janela = new JFrame("Space Invanders");
+		JFrame janela = new JFrame("Space IMT");
 		janela.setSize(1366, 768);
 		janela.setUndecorated(false);
 		janela.setLayout(null);
@@ -21,7 +21,7 @@ public class MainJogo {
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		SpaceInvaders invasaoAlien = new SpaceInvaders();
+		SpaceIMT invasaoAlien = new SpaceIMT(0, 2);
 		invasaoAlien.setBounds(0, 0, 1366, 768);
 		
 		janela.add(invasaoAlien);

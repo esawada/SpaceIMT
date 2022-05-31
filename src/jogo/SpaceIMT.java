@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import classesObj.Nave;
 import classesObj.Questao;
@@ -23,9 +22,11 @@ import classesObj.Inimigo;
 import classesObj.Explosao;
 
 
-public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
+public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 	
 	private Font minhaFonte = new Font("Consolas", Font.BOLD, 20); 
+	private Font FontePergunta = new Font("Arial", Font.BOLD, 35); 
+	private Font FonteAlternativas = new Font("Consolas", Font.PLAIN, 25); 
 	private Nave nave;
 	private int direcao = 0;
 	private ArrayList<Tiro> tiros;
@@ -33,14 +34,22 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 	private ArrayList<Explosao> explosoes;
 	private PlanoDeFundo fundo;
 	private boolean ganhou;
-	private boolean selecionado;
+	private boolean pausado;
+	private boolean mostrandoNivel;
 	private float FechandoEm = 10; 
 	private boolean perdeu;
 	private BufferedImage ImagemExplosao;
-	private List<String> listaDeAlternativas;
+	private List<String> listaDeAlternativas = new ArrayList<>();
 	private Questao questao;
+	private int numeroDeQuestoes;
+	private int numeroDeQuestoesAtual = 1;
+	private List<Integer> listaDificuldade = new ArrayList<>();
+	private int vida;
+	private int vidaAtual;
+
 	
-	public SpaceInvaders() {
+	public SpaceIMT(int fase, int vida) {
+
 		nave = new Nave();
 		tiros = new ArrayList<Tiro>();
 		inimigos = new ArrayList<Inimigo>();
@@ -48,13 +57,41 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 		fundo = new PlanoDeFundo();
 		ganhou = false; 
 		perdeu = false;
-		selecionado = false;
+		pausado = false;
 		questao = new Questao();
+		this.vida = vida;
+		vidaAtual = vida;
+		for (int i = 0; i < 3; i++) listaDificuldade.add(0);
+		for (int i = 0; i < fase; i++){
+			if (listaDificuldade.size() > 3)
+				if (listaDificuldade.get(listaDificuldade.size() - 1) == 2)
+					listaDificuldade.add(0);
+				else
+					listaDificuldade.set(listaDificuldade.size() - 1, listaDificuldade.get(listaDificuldade.size() - 1) + 1);
+			else if (listaDificuldade.get(0) == listaDificuldade.get(1) && listaDificuldade.get(0) == listaDificuldade.get(2))
+				if (listaDificuldade.get(0) == 2)
+					listaDificuldade.add(0);
+				else
+					listaDificuldade.set(0, listaDificuldade.get(0) + 1);
+			else if (listaDificuldade.get(1) == listaDificuldade.get(2))
+				listaDificuldade.set(1, listaDificuldade.get(1) + 1);
+			else if (listaDificuldade.get(0) == listaDificuldade.get(1))
+				listaDificuldade.set(2, listaDificuldade.get(2) + 1);
+			System.out.println(listaDificuldade);
+		}
+		numeroDeQuestoes = listaDificuldade.size();
+		CriaInimigos(listaDificuldade.get(0));
+		Thread LacoDoJogo =  new Thread(this);
+		LacoDoJogo.start();
+		
+	}
+
+	public void CriaInimigos(int dificuldade){
+
 		listaDeAlternativas = new ArrayList<>();
-		questao = Questao.getQuestaoAleatoriaByDificuldade(0);
+		questao = Questao.getQuestaoAleatoriaByDificuldade(dificuldade);
 		listaDeAlternativas = Questao.getAltEmbaralhadas(questao);
-		
-		
+
 		BufferedImage imagemInimigoA = null;
 		BufferedImage imagemInimigoB = null;
 		BufferedImage imagemInimigoC = null;
@@ -75,10 +112,6 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 			inimigos.add(new Inimigo(imagemInimigoB, 10 + 1%20 * 300, 50 + 1/10 * 50 + 100, 1, listaDeAlternativas.get(2)));
 			inimigos.add(new Inimigo(imagemInimigoC, 10 + 2%20 * 300, 50 + 2/10 * 50 + 100, 1, listaDeAlternativas.get(3)));
 			inimigos.add(new Inimigo(imagemInimigoD, 10 + 3%20 * 300, 50 + 3/10 * 50 + 100, 1, listaDeAlternativas.get(4)));
-		
-		Thread LacoDoJogo =  new Thread(this);
-		LacoDoJogo.start();
-		
 	}
 	
 	
@@ -101,10 +134,10 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 	}
 	
 	private void update() {
-		
-		// if (inimigos.size() == 0) {
-		// 	ganhou = true;
-		// }
+		if (pausado) {
+			nave.setPodeAtirar(false);
+			return;
+		}
 		nave.movimento(direcao);
 		
 		for (int i = 0; i < inimigos.size(); i++) {
@@ -201,33 +234,54 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 
 		//desenha alternativas
 		g.setColor(Color.white);
-		g.setFont(minhaFonte);
-		g.drawString(listaDeAlternativas.get(0), 10 + 0%20 * 200,30 + 0/10 * 50);
-		g.drawString("A : " + listaDeAlternativas.get(1), 10 + 0%20 * 200, 0/10 * 50 + 60);
-		g.drawString("B : " + listaDeAlternativas.get(2), 10 + 0%20 * 200, 0/10 * 50 + 90);
-		g.drawString("C : " + listaDeAlternativas.get(3), 10 + 3%20 * 200, 0/10 * 50 + 60);
-		g.drawString("D : " + listaDeAlternativas.get(4), 10 + 3%20 * 200, 0/10 * 50 + 90);
+		g.setFont(FontePergunta);
+		g.drawString(listaDeAlternativas.get(0), 10 + 0%20 * 200,40 + 0/10 * 50);
+		g.setFont(FonteAlternativas);
+		g.drawString("A : " + listaDeAlternativas.get(1), 10 + 0%20 * 200, 0/10 * 50 + 75);
+		g.drawString("B : " + listaDeAlternativas.get(2), 10 + 0%20 * 200, 0/10 * 50 + 105);
+		g.drawString("C : " + listaDeAlternativas.get(3), 10 + 3%20 * 200, 0/10 * 50 + 75);
+		g.drawString("D : " + listaDeAlternativas.get(4), 10 + 3%20 * 200, 0/10 * 50 + 105);
+		g.drawString(String.format("Questão: %d/%d", numeroDeQuestoesAtual, numeroDeQuestoes), 1150, 700);
+		g.drawString(String.format("Vida: %d/%d", vidaAtual, vida), 1150, 670);
 			
 		if(ganhou) {
-			g.setColor(Color.white);
-			g.setFont(minhaFonte);
-			g.drawString("Você Ganhou!! Fechando em " + FechandoEm + " segundos.", 450, 400);
-			
-			FechandoEm -= 0.016666f;
-			if(FechandoEm <= 0) {
-				System.exit(0);
+			if(numeroDeQuestoesAtual <= numeroDeQuestoes - 1) {
+				numeroDeQuestoesAtual++;
+				ganhou = false;
+				tiros.removeAll(tiros);
+				inimigos.removeAll(inimigos);
+				CriaInimigos(listaDificuldade.get(numeroDeQuestoesAtual - 1));
+			} else {
+				pausado = true;
+				g.setColor(Color.white);
+				g.setFont(minhaFonte);
+				g.drawString("Você Ganhou!! Fechando em " + FechandoEm + " segundos.", 450, 400);
 				
-			}
-			
+				FechandoEm -= 0.016666f;
+				if(FechandoEm <= 0) {
+					System.exit(0);
+				}
+			}	
 		}
 		if (perdeu) {
-			g.setColor(Color.red);
-			g.setFont(minhaFonte);
-			g.drawString("Você Perdeu :( !! Fechando em " + FechandoEm + " segundos.", 450, 400);
-			
-			FechandoEm -= 0.016666f;
-			if(FechandoEm <= 0) {
-				System.exit(0);
+			if(vidaAtual != 0) vidaAtual--;
+			if(vidaAtual == 0) {
+				pausado = true;
+				g.setColor(Color.red);
+				g.setFont(minhaFonte);
+				g.drawString("Você Perdeu :( !! Fechando em " + FechandoEm + " segundos.", 450, 400);
+				
+				FechandoEm -= 0.016666f;
+				if(FechandoEm <= 0) {
+					System.exit(0);
+				}
+			}
+			else {
+				numeroDeQuestoesAtual++;
+				perdeu = false;
+				tiros.removeAll(tiros);
+				inimigos.removeAll(inimigos);
+				CriaInimigos(listaDificuldade.get(numeroDeQuestoesAtual - 1));
 			}
 		}
 		
@@ -273,5 +327,5 @@ public class SpaceInvaders extends JPanel implements Runnable, KeyListener{
 		}
 		
 		
-	}
+}
 		
