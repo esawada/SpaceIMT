@@ -2,7 +2,6 @@ package DAO;
 
 import DTO.UsuarioDTO;
 import dataBase.ConnectionFactory;
-
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,10 +11,13 @@ import javax.swing.JOptionPane;
 public class UsuarioDAO {
 
     Connection conn;
-
+    PreparedStatement pstm;
+    ResultSet rs;
+    
     public ResultSet autenticacaoUsuario(UsuarioDTO objusuariodto) {
+        
         conn = ConnectionFactory.getConnection();
-
+                
         try {
             String sql = "select * from usuario where email = ? and senha = ?";
             
