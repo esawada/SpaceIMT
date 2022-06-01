@@ -17,7 +17,7 @@ public class frmLogin extends javax.swing.JFrame {
     
     public frmLogin() {
         initComponents();
-        getContentPane().setBackground(Color.PINK);
+        getContentPane().setBackground(Color.BLACK);
         
        
     }
@@ -29,85 +29,75 @@ public class frmLogin extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
-        jLabel1 = new javax.swing.JLabel();
+        ima1 = new javax.swing.JLabel();
         txtEmailUsuario = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         btnEntrarSistema = new javax.swing.JButton();
         txtSenhaUsuario = new javax.swing.JPasswordField();
         btnCadastrar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(jEditorPane1);
 
+        ima1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VIEW/navr.gif"))); // NOI18N
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImages(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Email de Usuário");
+        txtEmailUsuario.setBackground(new java.awt.Color(0, 0, 0));
+        txtEmailUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtEmailUsuario.setForeground(new java.awt.Color(255, 204, 0));
+        txtEmailUsuario.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 0)), "Email de Usuário:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Console", 2, 14), new java.awt.Color(255, 0, 0))); // NOI18N
+        txtEmailUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailUsuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtEmailUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 230, 50));
 
-        jLabel2.setText("Senha de Usuário");
-
-        btnEntrarSistema.setText("ENTRAR ");
+        btnEntrarSistema.setBackground(new java.awt.Color(51, 0, 255));
+        btnEntrarSistema.setFont(new java.awt.Font("Lucida Console", 1, 14)); // NOI18N
+        btnEntrarSistema.setForeground(new java.awt.Color(255, 255, 255));
+        btnEntrarSistema.setText("ENTRAR");
         btnEntrarSistema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarSistemaActionPerformed(evt);
             }
         });
+        getContentPane().add(btnEntrarSistema, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, 110, 30));
 
+        txtSenhaUsuario.setBackground(new java.awt.Color(0, 0, 0));
+        txtSenhaUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtSenhaUsuario.setForeground(new java.awt.Color(255, 255, 0));
+        txtSenhaUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtSenhaUsuario.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 0)), "Senha de Usuário:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Console", 2, 14), new java.awt.Color(255, 0, 0))); // NOI18N
+        txtSenhaUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSenhaUsuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtSenhaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 230, 50));
+
+        btnCadastrar.setBackground(new java.awt.Color(255, 255, 0));
+        btnCadastrar.setFont(new java.awt.Font("Lucida Console", 1, 14)); // NOI18N
         btnCadastrar.setText("CADASTRAR");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 110, 30));
 
+        jLabel3.setFont(new java.awt.Font("Impact", 3, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 51));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("SPACEIMT");
+        jLabel3.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1)));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 250, 80));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSenhaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmailUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(btnEntrarSistema))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addComponent(btnCadastrar)))
-                .addContainerGap(109, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel3)
-                .addGap(41, 41, 41)
-                .addComponent(jLabel1)
-                .addGap(30, 30, 30)
-                .addComponent(txtEmailUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(txtSenhaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(btnEntrarSistema)
-                .addGap(18, 18, 18)
-                .addComponent(btnCadastrar)
-                .addGap(24, 24, 24))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VIEW/navr.gif"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 530, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -123,7 +113,16 @@ public class frmLogin extends javax.swing.JFrame {
         form.pack();
         form.setVisible(true);
         form.setLocationRelativeTo(null);
+        dispose();
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void txtSenhaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSenhaUsuarioActionPerformed
+
+    private void txtEmailUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,9 +162,9 @@ public class frmLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEntrarSistema;
+    private javax.swing.JLabel ima1;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtEmailUsuario;
