@@ -18,16 +18,12 @@ public class frmCadastroView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
         PWsenha = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VIEW/navr.gif"))); // NOI18N
-        jLabel2.setText("jLabel2");
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -40,14 +36,14 @@ public class frmCadastroView extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 164, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 101, 164, -1));
 
         jTextField3.setBackground(new java.awt.Color(0, 0, 0));
         jTextField3.setForeground(new java.awt.Color(255, 255, 255));
         jTextField3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)), "Nickname:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(255, 255, 0))); // NOI18N
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 164, -1));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 262, 164, -1));
 
-        btnCadastrar.setBackground(new java.awt.Color(0, 0, 255));
+        btnCadastrar.setBackground(new java.awt.Color(0, 51, 204));
         btnCadastrar.setFont(new java.awt.Font("Lucida Console", 1, 14)); // NOI18N
         btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastrar.setText("CADASTRAR");
@@ -56,21 +52,21 @@ public class frmCadastroView extends javax.swing.JFrame {
                 btnCadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, -1, -1));
+        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, -1, -1));
 
         PWsenha.setBackground(new java.awt.Color(0, 0, 0));
         PWsenha.setForeground(new java.awt.Color(255, 255, 255));
         PWsenha.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)), "Senha:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(255, 255, 51))); // NOI18N
-        getContentPane().add(PWsenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 164, -1));
+        getContentPane().add(PWsenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 183, 164, -1));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Impact", 3, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Impact", 3, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 0));
         jLabel1.setText("CADASTRO");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 260, 40));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 27, 142, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VIEW/cadas.gif"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -80, 410, 560));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VIEW/imagem cadastro.gif"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 410, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -141,7 +137,6 @@ public class frmCadastroView extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
