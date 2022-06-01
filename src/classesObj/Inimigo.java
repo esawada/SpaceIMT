@@ -23,6 +23,10 @@ public class Inimigo{
 		this.velocidade = 4;
 		this.alternativa = alternativa;
 	}
+
+	public void setVelocidade(int velocidade){
+		this.velocidade = velocidade;
+	}
 	
 	public void atualizar() {
 		

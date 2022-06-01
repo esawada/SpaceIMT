@@ -31,4 +31,41 @@ public class UsuarioDAO {
             return null;
         }
     }
+    public static int GetFaseByID(int idUsuario) {
+    
+    String sql = "SELECT numeroFase FROM usuario WHERE idUsuario = ? ";
+    int fase = 0;
+        Connection con = ConnectionFactory.getConnection();
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setInt(1, idUsuario);
+            ResultSet resultSet = stmt.executeQuery();
+                
+                if (resultSet.next()) {
+                    fase = resultSet.getInt("numeroFase");
+                }
+
+                stmt.close();
+                con.close();
+            } catch (Exception e) {
+            e.printStackTrace();
+            }
+        return fase;
+    }
+
+    public static void IncrementarFase(int idUsuario) {
+    
+    String sql = "UPDATE usuario SET numeroFase = numeroFase + 1 WHERE idUsuario = ?";
+        Connection con = ConnectionFactory.getConnection();
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, idUsuario);
+            stmt.execute();
+            stmt.close();
+            con.close();
+            } catch (Exception e) {
+            e.printStackTrace();
+            }
+    }
 }

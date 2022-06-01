@@ -19,7 +19,11 @@ public class Questao{
     private int dificuldade;
 
     public String getAltCorreta() {
-        return this.altCorreta;
+        return altCorreta;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public Questao getQuestaoByID(int idQuestao) {
