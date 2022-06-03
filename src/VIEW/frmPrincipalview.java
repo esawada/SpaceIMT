@@ -30,6 +30,7 @@ public class frmPrincipalview extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,13 +38,17 @@ public class frmPrincipalview extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 0, 153));
         jLabel2.setText("tela principal");
 
+        jButton1.setText("pesquisar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addComponent(jLabel2)
+                .addGap(152, 152, 152)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel2))
                 .addContainerGap(168, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -51,7 +56,9 @@ public class frmPrincipalview extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(102, 102, 102)
                 .addComponent(jLabel2)
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
+                .addComponent(jButton1)
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         pack();
@@ -93,6 +100,7 @@ public class frmPrincipalview extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
