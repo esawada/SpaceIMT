@@ -11,6 +11,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 
 public class Aba_Profile extends JFrame {
 
@@ -32,10 +34,10 @@ public class Aba_Profile extends JFrame {
 	
 	public Aba_Profile() {
 		
-		Image img_Fundo_Profile = new ImageIcon(Frame.class.getResource("imgs/Fundo_Menu.jpg")).getImage().getScaledInstance(1400,1400,Image.SCALE_SMOOTH);
-		Image img_Conquista = new ImageIcon(Frame.class.getResource("imgs/Conquista.png")).getImage().getScaledInstance(90,90,Image.SCALE_SMOOTH);
-		Image img_User = new ImageIcon(Frame.class.getResource("imgs/Nave.png")).getImage().getScaledInstance(90,90,Image.SCALE_SMOOTH);
-		Image img_Atencao = new ImageIcon(Frame.class.getResource("imgs/Atencao.png")).getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH);
+		Image img_Fundo_Profile = new ImageIcon(Aba_Profile.class.getResource("imgs/Fundo_Menu.jpg")).getImage().getScaledInstance(1400,1400,Image.SCALE_SMOOTH);
+		Image img_Conquista = new ImageIcon(Aba_Profile.class.getResource("imgs/Conquista.png")).getImage().getScaledInstance(90,90,Image.SCALE_SMOOTH);
+		Image img_User = new ImageIcon(Aba_Profile.class.getResource("imgs/Nave.png")).getImage().getScaledInstance(90,90,Image.SCALE_SMOOTH);
+		Image img_Atencao = new ImageIcon(Aba_Profile.class.getResource("imgs/Atencao.png")).getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH);
 		
 		
 		
@@ -103,5 +105,7 @@ public class Aba_Profile extends JFrame {
 		lblFundo_Perfil.setIcon(new ImageIcon(img_Fundo_Profile));
 		
 		contentPane.add(lblFundo_Perfil);
+		
+		
 	}
 }
