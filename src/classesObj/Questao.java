@@ -1,14 +1,5 @@
 package classesObj;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import dataBase.ConnectionFactory;
-
 public class Questao{
     private int id;
     private String alt1;
@@ -22,83 +13,57 @@ public class Questao{
         return altCorreta;
     }
 
+    public String getPergunta() {
+        return pergunta;
+    }
+
+    public void setPergunta(String pergunta) {
+        this.pergunta = pergunta;
+    }
+
+    public int getDificuldade() {
+        return dificuldade;
+    }
+
+    public void setDificuldade(int dificuldade) {
+        this.dificuldade = dificuldade;
+    }
+
+    public void setAltCorreta(String altCorreta) {
+        this.altCorreta = altCorreta;
+    }
+
+    public String getAlt3() {
+        return alt3;
+    }
+
+    public void setAlt3(String alt3) {
+        this.alt3 = alt3;
+    }
+
+    public String getAlt2() {
+        return alt2;
+    }
+
+    public void setAlt2(String alt2) {
+        this.alt2 = alt2;
+    }
+
+    public String getAlt1() {
+        return alt1;
+    }
+
+    public void setAlt1(String alt1) {
+        this.alt1 = alt1;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
 
-    public Questao getQuestaoByID(int idQuestao) {
-
-        String sql = "SELECT * FROM questao WHERE idQuestao = ? ";
-        Questao questao = new Questao();
-        Connection con = ConnectionFactory.getConnection();
-
-        try (PreparedStatement stmt = con.prepareStatement(sql)) {
-
-            stmt.setInt(1, idQuestao);
-            ResultSet resultSet = stmt.executeQuery();
-                
-                if (resultSet.next()) {
-                    questao.id = resultSet.getInt("idQuestao");
-                    questao.alt1 = resultSet.getString("alt1");
-                    questao.alt2 = resultSet.getString("alt2");
-                    questao.alt3 = resultSet.getString("alt3");
-                    questao.altCorreta = resultSet.getString("altCorreta");
-                    questao.pergunta = resultSet.getString("pergunta");
-                    questao.dificuldade = resultSet.getInt("dificuldade");
-                }
-
-                stmt.close();
-                con.close();
-            } catch (Exception e) {
-            e.printStackTrace();
-            }
-        return questao;
-        }
-
-    public static Questao getQuestaoAleatoriaByDificuldade(int dificuldade) {
-
-        String sql = "SELECT * FROM questao WHERE dificuldade = ? ORDER BY rand() LIMIT 1;";
-        Questao questao = new Questao();
-        Connection con = ConnectionFactory.getConnection();
-
-        try (PreparedStatement stmt = con.prepareStatement(sql)) {
-
-            stmt.setInt(1, dificuldade);
-            ResultSet resultSet = stmt.executeQuery();
-                
-                if (resultSet.next()) {
-                    questao.id = resultSet.getInt("idQuestao");
-                    questao.alt1 = resultSet.getString("alt1");
-                    questao.alt2 = resultSet.getString("alt2");
-                    questao.alt3 = resultSet.getString("alt3");
-                    questao.altCorreta = resultSet.getString("altCorreta");
-                    questao.pergunta = resultSet.getString("pergunta");
-                    questao.dificuldade = resultSet.getInt("dificuldade");
-                }
-
-                stmt.close();
-                con.close();
-            } catch (Exception e) {
-            e.printStackTrace();
-            }
-        return questao;
-        }
-
-        public static List<String> getAltEmbaralhadas(Questao questao) {
-            List<String> listaQuestao = new ArrayList<>();
-            List<String> alternativas = new ArrayList<>();
-            listaQuestao.add(questao.pergunta);
-            Collections.addAll(alternativas, questao.altCorreta, questao.alt1, questao.alt2, questao.alt3);
-            Collections.shuffle(alternativas);
-            listaQuestao.addAll(alternativas);
-            return listaQuestao;
-        }
-
-        public boolean checarSeAlternativaCorreta(String alternativa) {
-            if (alternativa.equals(this.altCorreta)){
-                return true;
-            } else {
-                return false;
-            }
-        }
+    
 }

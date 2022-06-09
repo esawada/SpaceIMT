@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import DAO.QuestaoDAO;
 import DAO.UsuarioDAO;
 import classesObj.Nave;
 import classesObj.Questao;
@@ -39,7 +40,7 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 	private PlanoDeFundo fundo;
 	private boolean ganhou;
 	private boolean pausado;
-	private boolean mostrandoNivel;
+
 	private float exibindoFase = 2;
 	private float FechandoEm = 2; 
 	private boolean perdeu;
@@ -103,8 +104,8 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 
 		do{
 			listaDeAlternativas = new ArrayList<>();
-			questao = Questao.getQuestaoAleatoriaByDificuldade(dificuldade);
-			listaDeAlternativas = Questao.getAltEmbaralhadas(questao);
+			questao = QuestaoDAO.getQuestaoAleatoriaByDificuldade(dificuldade);
+			listaDeAlternativas = QuestaoDAO.getAltEmbaralhadas(questao);
 		} while(listaQuestoesJogadas.contains(questao.getId()));
 		listaQuestoesJogadas.add(questao.getId());
 
