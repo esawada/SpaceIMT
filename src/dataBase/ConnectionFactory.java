@@ -9,7 +9,7 @@ public class ConnectionFactory {
 
         String url = "jdbc:mysql://localhost:3306/spaceimt";
         String username = "root";
-        String password = "eduardo310";
+        String password = "";
         Connection con = null;
 
         try {
