@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -15,23 +16,23 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
-public class ADM extends JFrame {
+public class Frame extends JFrame {
 
 	private JPanel contentPane;
 
-	private Image img_Python = new ImageIcon(ADM.class.getResource("imgs/Python.png")).getImage().getScaledInstance(100,100,Image.SCALE_SMOOTH);
-	private Image img_Start = new ImageIcon(ADM.class.getResource("imgs/Start.png")).getImage().getScaledInstance(40,40,Image.SCALE_SMOOTH);
-	private Image img_Profile = new ImageIcon(ADM.class.getResource("imgs/Profile.png")).getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-	private Image img_Option = new ImageIcon(ADM.class.getResource("imgs/Settings.png")).getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-	private Image img_Exit = new ImageIcon(ADM.class.getResource("imgs/Exit.png")).getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-	private Image img_Comeco = new ImageIcon(ADM.class.getResource("imgs/Nave Space.jpg")).getImage().getScaledInstance(1000,750,Image.SCALE_SMOOTH);
-	private Image img_Edit = new ImageIcon(ADM.class.getResource("imgs/edit.png")).getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	private Image img_Python = new ImageIcon(Frame.class.getResource("imgs/Python.png")).getImage().getScaledInstance(100,100,Image.SCALE_SMOOTH);
+	private Image img_Start = new ImageIcon(Frame.class.getResource("imgs/Start.png")).getImage().getScaledInstance(40,40,Image.SCALE_SMOOTH);
+	private Image img_Profile = new ImageIcon(Frame.class.getResource("imgs/Profile.png")).getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	private Image img_Option = new ImageIcon(Frame.class.getResource("imgs/Settings.png")).getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	private Image img_Exit = new ImageIcon(Frame.class.getResource("imgs/Exit.png")).getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	private Image img_Comeco = new ImageIcon(Frame.class.getResource("imgs/Nave Space.jpg")).getImage().getScaledInstance(1000,750,Image.SCALE_SMOOTH);
+	private Image img_Conq = new ImageIcon(Frame.class.getResource("imgs/Conquista.png")).getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ADM frame = new ADM();
+					Frame frame = new Frame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,11 +42,11 @@ public class ADM extends JFrame {
 	}
 
 
-	public ADM() {
+	public Frame() {
 		setBackground(Color.BLACK);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 0, 1100, 734);
+		setBounds(100, 0, 1100, 750);
 		setUndecorated(false);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
@@ -55,13 +56,13 @@ public class ADM extends JFrame {
 		
 		JPanel panelMenu = new JPanel();
 		panelMenu.setBackground(Color.DARK_GRAY);
-		panelMenu.setBounds(0, -10, 268, 713);
+		panelMenu.setBounds(0, 0, 268, 713);
 		contentPane.add(panelMenu);
 		panelMenu.setLayout(null);
 		
 		JLabel lblNave = new JLabel("");
 		lblNave.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNave.setBounds(0, 61, 266, 162);
+		lblNave.setBounds(0, 47, 266, 162);
 		lblNave.setIcon(new ImageIcon(img_Python));
 		panelMenu.add(lblNave);
 		
@@ -76,7 +77,7 @@ public class ADM extends JFrame {
 		});		
 		
 		panelStart.setBackground(Color.DARK_GRAY);
-		panelStart.setBounds(0, 233, 276, 75);
+		panelStart.setBounds(0, 239, 276, 75);
 		panelMenu.add(panelStart);
 		panelStart.setLayout(null);
 		panelStart.addMouseListener(new PanelButtonMouseAdapter(panelStart) {
@@ -116,7 +117,7 @@ public class ADM extends JFrame {
 			}
 		});		
 		panelProfile.setBackground(Color.DARK_GRAY);
-		panelProfile.setBounds(0, 346, 286, 71);
+		panelProfile.setBounds(0, 344, 286, 71);
 		panelMenu.add(panelProfile);
 		panelProfile.setLayout(null);
 		
@@ -146,7 +147,7 @@ public class ADM extends JFrame {
 		});		
 
 		panelOptions.setBackground(Color.DARK_GRAY);
-		panelOptions.setBounds(0, 446, 276, 71);
+		panelOptions.setBounds(0, 442, 276, 71);
 		panelMenu.add(panelOptions);
 		panelOptions.setLayout(null);
 		
@@ -154,7 +155,7 @@ public class ADM extends JFrame {
 		lblOption.setBackground(new Color(0, 139, 139));
 		lblOption.setForeground(new Color(255, 255, 255));
 		lblOption.setFont(new Font("OCR A Extended", Font.PLAIN, 40));
-		lblOption.setBounds(75, 20, 191, 29);
+		lblOption.setBounds(67, 20, 199, 29);
 		panelOptions.add(lblOption);
 		
 		JLabel lblOptionIMG = new JLabel("");
@@ -162,31 +163,6 @@ public class ADM extends JFrame {
 		lblOptionIMG.setBounds(11, 10, 54, 55);
 		lblOptionIMG.setIcon(new ImageIcon(img_Option));
 		panelOptions.add(lblOptionIMG);
-		
-		JPanel panelEdit = new JPanel();
-		panelEdit.addMouseListener(new PanelButtonMouseAdapter(panelEdit) {
-			@Override
-			public void mouseClicked (MouseEvent e) {
-				//ADM adm = new ADM();
-				//adm.setVisible(true);
-			}
-		});		
-		panelEdit.setBackground(Color.DARK_GRAY);
-		panelEdit.setBounds(0, 542, 268, 71);
-		panelMenu.add(panelEdit);
-		panelEdit.setLayout(null);
-		
-		JLabel lblEditIMG = new JLabel("");
-		lblEditIMG.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEditIMG.setBounds(0, 0, 66, 71);
-		lblEditIMG.setIcon(new ImageIcon(img_Edit));
-		panelEdit.add(lblEditIMG);
-		
-		JLabel lblEdit = new JLabel("EDIT");
-		lblEdit.setForeground(Color.WHITE);
-		lblEdit.setFont(new Font("OCR A Extended", Font.PLAIN, 40));
-		lblEdit.setBounds(76, 0, 192, 71);
-		panelEdit.add(lblEdit);
 		
 		JPanel panelExit = new JPanel();
 		panelExit.addMouseListener(new PanelButtonMouseAdapter(panelExit) {
@@ -203,7 +179,7 @@ public class ADM extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(JOptionPane.showConfirmDialog(null, "Você quer fechar o jogo?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {                                                                 
-					ADM.this.dispose();
+					Frame.this.dispose();
 					
 				}
 			}
@@ -222,10 +198,29 @@ public class ADM extends JFrame {
 		lblExitIMG.setIcon(new ImageIcon(img_Exit));
 		panelExit.add(lblExitIMG);
 		
-		JLabel lblAdminSet = new JLabel("*Admin Edit");
-		lblAdminSet.setFont(new Font("OCR A Extended", Font.PLAIN, 15));
-		lblAdminSet.setBounds(0, 22, 108, 13);
-		panelMenu.add(lblAdminSet);
+		JPanel panelConq = new JPanel();
+		panelConq.addMouseListener(new PanelButtonMouseAdapter(panelConq) {
+			@Override
+			public void mouseClicked (MouseEvent e) {
+				//menuClicked(panelSair);
+			}
+		});		
+		panelConq.setBackground(Color.DARK_GRAY);
+		panelConq.setBounds(0, 543, 286, 71);
+		panelMenu.add(panelConq);
+		panelConq.setLayout(null);
+		
+		JLabel lblIMGConq = new JLabel("");
+		lblIMGConq.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIMGConq.setBounds(0, 0, 72, 71);
+		lblIMGConq.setIcon(new ImageIcon(img_Conq));
+		panelConq.add(lblIMGConq);
+		
+		JLabel lblTXTConq = new JLabel("Ranking");
+		lblTXTConq.setFont(new Font("OCR A Extended", Font.PLAIN, 40));
+		lblTXTConq.setForeground(new Color(255, 255, 255));
+		lblTXTConq.setBounds(72, 10, 192, 51);
+		panelConq.add(lblTXTConq);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
