@@ -1,10 +1,10 @@
 package DTO;
 
-public class ConquistaDTO {
+public class ExibirConquistaDTO {
     
     private int idConquista;
     private String titulo, descricao;
-    private boolean liberada;
+    // private boolean liberada;
 
     public String getTitulo() {
         return titulo;
@@ -22,13 +22,13 @@ public class ConquistaDTO {
         this.descricao = descricao;
     }
 
-    public boolean isLiberada() {
-        return liberada;
-    }
+    // public boolean isLiberada() {
+    //     return liberada;
+    // }
 
-    public void setLiberada(boolean liberada) {
-        this.liberada = liberada;
-    }
+    // public void setLiberada(boolean liberada) {
+    //     this.liberada = liberada;
+    // }
     
     
     public int getIdConquista() {

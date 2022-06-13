@@ -13,9 +13,10 @@ CREATE TABLE usuario (
 insert into usuario (senha, email, nickname, tipo) values ('123', 'adm@maua.br', 'adm',true);
 CREATE TABLE conquista (
     idConquista INTEGER PRIMARY KEY AUTO_INCREMENT,
-    numeroPerguntas INTEGER NOT NULL,
+    dadoConquista INTEGER NOT NULL,
     tipoConquista BOOL NOT NULL,
-    valor INTEGER NOT NULL
+    tituloConquista VARCHAR(50) NOT NULL,
+    descricaoConquista VARCHAR(50) NOT NULL
 );
 CREATE TABLE questao (
     idQuestao INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -23,7 +24,7 @@ CREATE TABLE questao (
     alt2 VARCHAR(50) DEFAULT 'Sem alternativa 2',
     alt3 VARCHAR(50) DEFAULT 'Sem alternativa 3',
     altCorreta VARCHAR(50) DEFAULT 'Sem alternativa correta',
-    pergunta VARCHAR(50) DEFAULT 'Sem projeto',
+    pergunta VARCHAR(50) DEFAULT 'Sem pergunta',
     dificuldade INTEGER DEFAULT 0
 );
 CREATE TABLE usuarioConquista (
@@ -32,5 +33,6 @@ CREATE TABLE usuarioConquista (
     FOREIGN KEY (idUsuario)
         REFERENCES usuario (idUsuario),
     FOREIGN KEY (idConquista)
-        REFERENCES conquista (idConquista)
+        REFERENCES conquista (idConquista),
+    PRIMARY KEY (idUsuario , idConquista)
 );

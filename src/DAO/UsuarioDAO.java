@@ -70,4 +70,26 @@ public class UsuarioDAO {
             e.printStackTrace();
             }
     }
+
+    public String GetNicknameById(int idUsuario) {
+        String sql = "SELECT nickname FROM usuario WHERE idUsuario = ? ";
+            Connection con = ConnectionFactory.getConnection();
+            String nickname = null;
+    
+            try (PreparedStatement stmt = con.prepareStatement(sql)) {
+    
+                stmt.setInt(1, idUsuario);
+                ResultSet resultSet = stmt.executeQuery();
+                    
+                    if (resultSet.next()) {
+                        nickname = resultSet.getString("nickname");
+                    }
+    
+                    stmt.close();
+                    con.close();
+                } catch (Exception e) {
+                e.printStackTrace();
+                }
+            return nickname;
+    }
 }

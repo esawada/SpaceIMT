@@ -1,3 +1,5 @@
+package VIEW;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -36,7 +38,7 @@ public class Aba_Options extends JFrame {
 
 	
 	public Aba_Options() {
-		Image img_Espaco = new ImageIcon(Aba_Options.class.getResource("imgs/Espaço.jpg")).getImage().getScaledInstance(1200,710,Image.SCALE_SMOOTH);
+		Image img_Espaco = new ImageIcon(Aba_Options.class.getResource("imgs/EspaÃ§o.jpg")).getImage().getScaledInstance(1200,710,Image.SCALE_SMOOTH);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 0, 1100, 740);
 		Aba_Options = new JPanel();

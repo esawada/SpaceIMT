@@ -9,8 +9,6 @@ public class Explosao {
 	private int x, y;
 	private int duracao;
 	private int linha;
-	private int animacaoTotal;
-	private int coluna;
 	
 	public Explosao(BufferedImage imagem, int x, int y) {
 		
@@ -19,8 +17,6 @@ public class Explosao {
 		this.y = y;
 		duracao = 70;
 		linha = 0;
-		coluna = 0;
-		animacaoTotal = 120;
 	}
 	
 	public void atualizar() {

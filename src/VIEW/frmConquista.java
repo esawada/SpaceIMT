@@ -6,7 +6,7 @@ package VIEW;
 
 import DAO.ConquistaDAO;
 import DAO.UsuarioDAO;
-import DTO.ConquistaDTO;
+import DTO.ExibirConquistaDTO;
 import POJO.Globals;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -22,21 +22,21 @@ public class frmConquista extends javax.swing.JFrame {
     public frmConquista() {
         Globals globals = Globals.getInstance(1);
         ConquistaDAO dao = new ConquistaDAO();
-        ArrayList<ConquistaDTO> lista = dao.ListarConquistaUsuario(1);
+        ArrayList<ExibirConquistaDTO> lista = dao.ListarConquistaUsuario(1);
 
         initComponents();
         lbConquistas.setText(String.format(lbConquistas.getText(), globals.getNickname()));
         popularTabelaConquista(lista);
     }
 
-    private void popularTabelaConquista(ArrayList<ConquistaDTO> lista) {
+    private void popularTabelaConquista(ArrayList<ExibirConquistaDTO> lista) {
         DefaultTableModel model = (DefaultTableModel) conquistaTable.getModel();
         model.setNumRows(0);
         
         for (int x = 0; x < lista.size(); x++) {
-            ConquistaDTO conquista = lista.get(x);
+            ExibirConquistaDTO conquista = lista.get(x);
             model.addRow(new Object[]{conquista.getTitulo(), conquista.getDescricao()});
-            System.out.println(conquista.getTitulo() + conquista.getDescricao());
+            // System.out.println(conquista.getTitulo() + conquista.getDescricao());
         }
     }
     

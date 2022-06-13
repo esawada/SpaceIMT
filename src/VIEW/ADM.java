@@ -1,3 +1,5 @@
+package VIEW;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -109,8 +111,8 @@ public class ADM extends JFrame {
 		panelProfile.addMouseListener(new PanelButtonMouseAdapter(panelProfile) {
 			@Override
 			public void mouseClicked (MouseEvent e) {
-				//if(JOptionPane.showConfirmDialog(null, "Você quer fechar o jogo?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {                                                                 
-				Aba_Profile perfil = new Aba_Profile();
+				//if(JOptionPane.showConfirmDialog(null, "Vocï¿½ quer fechar o jogo?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {                                                                 
+				frmPerfil perfil = new frmPerfil();
 				perfil.setVisible(true);
 				
 			}
@@ -202,7 +204,7 @@ public class ADM extends JFrame {
 		panelExit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Você quer fechar o jogo?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {                                                                 
+				if(JOptionPane.showConfirmDialog(null, "Vocï¿½ quer fechar o jogo?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {                                                                 
 					ADM.this.dispose();
 					
 				}

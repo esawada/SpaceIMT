@@ -178,8 +178,8 @@ public class frmLogin extends javax.swing.JFrame {
 
             if (rsusuariodao.next()) {
                 // chamar tela que eu quero abrir 
-                frmPrincipalview objfrmPrincipalView = new frmPrincipalview();
-                objfrmPrincipalView.setVisible(true);
+                frmMenu objfrmMenu = new frmMenu();
+                objfrmMenu.setVisible(true);
 
                 dispose();
             } else {

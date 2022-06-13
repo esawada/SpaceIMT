@@ -34,14 +34,13 @@ public class frmMenu extends JFrame {
     public void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                frmMenu frame = new frmMenu(idUsuario);
+                frmMenu frame = new frmMenu();
                 frame.setVisible(true);
             }
         });
     }
     
-    public frmMenu(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public frmMenu() {
         setBackground(Color.BLACK);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -129,7 +128,7 @@ public class frmMenu extends JFrame {
         panelOptions.addMouseListener(new PanelButtonMouseAdapter(panelOptions) {
             @Override
             public void mouseClicked(MouseEvent e) {
-                frmOptions options = new frmOptions();
+                Aba_Options options = new Aba_Options();
                 options.setVisible(true);
 
             }

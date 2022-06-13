@@ -17,8 +17,12 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import DAO.ConquistaDAO;
 import DAO.QuestaoDAO;
 import DAO.UsuarioDAO;
+import DTO.ChecarConquistaDTO;
+import DTO.ExibirConquistaDTO;
+import VIEW.frmMenu;
 import classesObj.Nave;
 import classesObj.Questao;
 import classesObj.Tiro;
@@ -51,12 +55,17 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 	private int numeroDeQuestoesAtual = 1;
 	private List<Integer> listaDificuldade = new ArrayList<>();
 	private List<Integer> listaQuestoesJogadas = new ArrayList<>();
+	private List<Integer> listaExibirConquistas = new ArrayList<>();
 	private int vida;
 	private int vidaAtual;
 	private int fase;
 	private int idUsuario;
 	private boolean jogoAcabado = false;
+	private boolean exibirFimDeJogo = false;
 	private JFrame janela;
+	private int streak = 0;
+	private double tempo = 0;
+	private int repeticoes = 0;
 
 	
 	public SpaceIMT(int idUsuario, int vida, JFrame janela) {
@@ -91,7 +100,6 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 				listaDificuldade.set(1, listaDificuldade.get(1) + 1);
 			else if (listaDificuldade.get(0) == listaDificuldade.get(1))
 				listaDificuldade.set(2, listaDificuldade.get(2) + 1);
-			System.out.println(listaDificuldade);
 		}
 		numeroDeQuestoes = listaDificuldade.size();
 		CriaInimigos(listaDificuldade.get(0));
@@ -139,7 +147,7 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 			
 			try {
 				imagemMenu = ImageIO.read(new File("imagem/Menu.png"));
-				imagemJogarDeNovo = ImageIO.read(new File("imagem/JogarDeNovo.png"));
+				imagemJogarDeNovo = ImageIO.read(new File("imagem/JogarNovamente.png"));
 				imagemSair = ImageIO.read(new File("imagem/Sair.png"));
 			}catch(IOException e) {
 				System.out.println("N�o carregou a imagem");
@@ -180,6 +188,7 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 			nave.setPodeAtirar(false);
 			return;
 		}
+		tempo += 0.016666;
 		nave.movimento(direcao);
 		
 		for (int i = 0; i < inimigos.size(); i++) {
@@ -203,7 +212,10 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 					if (jogoAcabado){
 						switch (j) {
 							case 0: 
-								System.out.println("menu");
+								// System.out.println("menu");
+								frmMenu menu = new frmMenu();
+								menu.setVisible(true);
+								janela.dispose();
 								break;
 							case 1: 
 								// System.out.println("JogarDeNovo");
@@ -221,7 +233,7 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 					explosoes.add(new Explosao(ImagemExplosao,inimigos.get(j).getX(), inimigos.get(j).getY()));
 					
 					if(inimigos.get(j).getAlterernativa().equals(questao.getAltCorreta()))
- 	     					ganhou = true ; 
+						ganhou = true;
 					else
 						perdeu = true;
 					inimigos.remove(j);
@@ -301,21 +313,39 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 
 		//desenha alternativas
 		if(!jogoAcabado) {
-		g.setColor(Color.white);
-		g.setFont(fontePergunta);
-		g.drawString(listaDeAlternativas.get(0), 10 + 0%20 * 200,40 + 0/10 * 50);
-		g.setFont(fonteAlternativas);
-		g.drawString("A : " + listaDeAlternativas.get(1), 10 + 0%20 * 200, 0/10 * 50 + 75);
-		g.drawString("B : " + listaDeAlternativas.get(2), 10 + 0%20 * 200, 0/10 * 50 + 105);
-		g.drawString("C : " + listaDeAlternativas.get(3), 10 + 3%20 * 200, 0/10 * 50 + 75);
-		g.drawString("D : " + listaDeAlternativas.get(4), 10 + 3%20 * 200, 0/10 * 50 + 105);
-		g.drawString(String.format("Questão: %d/%d", numeroDeQuestoesAtual, numeroDeQuestoes), 1150, 700);
-		g.drawString(String.format("Vida: %d/%d", vidaAtual, vida), 1150, 670);
+			g.setColor(Color.white);
+			g.setFont(fontePergunta);
+			g.drawString(listaDeAlternativas.get(0), 10 + 0%20 * 200,40 + 0/10 * 50);
+			g.setFont(fonteAlternativas);
+			g.drawString("A : " + listaDeAlternativas.get(1), 10 + 0%20 * 200, 0/10 * 50 + 75);
+			g.drawString("B : " + listaDeAlternativas.get(2), 10 + 0%20 * 200, 0/10 * 50 + 105);
+			g.drawString("C : " + listaDeAlternativas.get(3), 10 + 3%20 * 200, 0/10 * 50 + 75);
+			g.drawString("D : " + listaDeAlternativas.get(4), 10 + 3%20 * 200, 0/10 * 50 + 105);
+			g.drawString(String.format("Questão: %d/%d", numeroDeQuestoesAtual, numeroDeQuestoes), 1150, 700);
+			g.drawString(String.format("Vida: %d/%d", vidaAtual, vida), 1150, 670);
+			g.drawString(String.format("Streak: %d", streak), 5, 670);
+			g.drawString(String.format("Tempo: %f", tempo), 5, 700);
+			ConquistaDAO conquistaDAO = new ConquistaDAO();
+			ExibirConquistaDTO conquistaDTO = new ExibirConquistaDTO();
+			if(listaExibirConquistas.size() > 0){
+				repeticoes++;
+				g.setFont(fontePergunta);
+				g.drawString(String.format("%s", conquistaDAO.getConquistaById(listaExibirConquistas.get(0)).getTitulo()), 600, 660);
+				g.setFont(fonteAlternativas);
+				g.drawString(String.format("%s", conquistaDAO.getConquistaById(listaExibirConquistas.get(0)).getDescricao()), 500, 700);
+				if(repeticoes >= 120) {
+					repeticoes = 0;
+					listaExibirConquistas.remove(0);
+				}
+			}
 		}	
 		if(ganhou) {
 			if(numeroDeQuestoesAtual <= numeroDeQuestoes - 1) {
 				numeroDeQuestoesAtual++;
+				streak++;
 				ganhou = false;
+				listaExibirConquistas.addAll(checarConquista(idUsuario, tempo, true));
+				listaExibirConquistas.addAll(checarConquista(idUsuario, streak, false));
 				tiros.removeAll(tiros);
 				inimigos.removeAll(inimigos);
 				CriaInimigos(listaDificuldade.get(numeroDeQuestoesAtual - 1));
@@ -334,8 +364,15 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 						tiros.removeAll(tiros);
 						inimigos.removeAll(inimigos);	
 						CriaInimigosMenu();
+						exibirFimDeJogo = true;
 						jogoAcabado = true;
 						UsuarioDAO.IncrementarFase(idUsuario);
+					} else if(exibirFimDeJogo) {
+						g.setColor(Color.white);
+						g.setFont(fonteAlternativas);
+						g.drawString("Menu", 320, 250);
+						g.drawString("Jogar Novamente", 600, 250);
+						g.drawString("Sair", 995, 250);
 					}
 				}
 			}	
@@ -358,6 +395,13 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 						inimigos.removeAll(inimigos);	
 						CriaInimigosMenu();
 						jogoAcabado = true;
+						exibirFimDeJogo = true;
+					} else if(exibirFimDeJogo) {
+						g.setColor(Color.white);
+						g.setFont(fonteAlternativas);
+						g.drawString("Menu", 330, 250);
+						g.drawString("Jogar Novamente", 600, 250);
+						g.drawString("Sair", 995, 250);
 					}
 				}
 			} else if(numeroDeQuestoes == numeroDeQuestoesAtual) {
@@ -366,14 +410,16 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 
 			} else {
 				numeroDeQuestoesAtual++;
+				streak = 0;
 				perdeu = false;
 				tiros.removeAll(tiros);
 				inimigos.removeAll(inimigos);
 				CriaInimigos(listaDificuldade.get(numeroDeQuestoesAtual - 1));
 			}
 		}
-		
 	}
+		
+	
 	
 	private void dorme(long duracao) {
 		try {
@@ -413,6 +459,24 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 	public void keyTyped(KeyEvent e) {
 		
 		}
+
+	private List<Integer> checarConquista(int idUsuario, double dadoConquista, Boolean tipoConquista) {
+		ConquistaDAO conquistaDAO = new ConquistaDAO();
+		List<ChecarConquistaDTO> listaConquista = new ArrayList<>();
+		List<Integer> listaIds = new ArrayList<>();
+		listaConquista = conquistaDAO.ListarConquistaUsuarioNaoLiberadas(idUsuario, tipoConquista);
+		for (ChecarConquistaDTO conquista : listaConquista) {
+			if(tipoConquista && dadoConquista <= conquista.getDadoConquista()){
+				conquistaDAO.LiberarConquista(idUsuario, conquista.getIdConquista());
+				listaIds.add(conquista.getIdConquista());
+			}
+			else if(!tipoConquista && dadoConquista >= conquista.getDadoConquista()){
+				conquistaDAO.LiberarConquista(idUsuario, conquista.getIdConquista());
+				listaIds.add(conquista.getIdConquista());
+			}
+		}
+		return listaIds;
+	}
 		
 		
 }
