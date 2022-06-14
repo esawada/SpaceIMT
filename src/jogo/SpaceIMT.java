@@ -22,6 +22,8 @@ import DAO.QuestaoDAO;
 import DAO.UsuarioDAO;
 import DTO.ChecarConquistaDTO;
 import DTO.ExibirConquistaDTO;
+import POJO.Globals;
+import VIEW.ADM;
 import VIEW.Menu;
 import classesObj.Nave;
 import classesObj.Questao;
@@ -66,13 +68,16 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 	private int streak = 0;
 	private double tempo = 0;
 	private int repeticoes = 0;
+	private boolean tipoUsuario;
 
 	
 	public SpaceIMT(int idUsuario, int vida, JFrame janela) {
 
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		this.janela = janela;
 		this.idUsuario = idUsuario;
-		fase = UsuarioDAO.GetFaseByID(idUsuario);
+		fase = usuarioDAO.GetFaseByID(idUsuario);
+		tipoUsuario = usuarioDAO.GetTipoById(idUsuario);
 		nave = new Nave();
 		tiros = new ArrayList<Tiro>();
 		inimigos = new ArrayList<Inimigo>();
@@ -212,9 +217,13 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 					if (jogoAcabado){
 						switch (j) {
 							case 0: 
-								// System.out.println("menu");
-								Menu menu = new Menu();
-								menu.setVisible(true);
+								if(tipoUsuario) {
+									ADM adm = new ADM(); 
+									adm.setVisible(true);
+								} else {
+									Menu objfrmMenu = new Menu();
+									objfrmMenu.setVisible(true);
+								}
 								janela.dispose();
 								break;
 							case 1: 

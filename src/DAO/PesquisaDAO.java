@@ -18,7 +18,7 @@ public class PesquisaDAO {
     
     public ArrayList<UsuarioDTO> PesquisarUsuario(){
   
-        String sql = "select * from usuario";
+        String sql = "SELECT * FROM usuario ORDER BY nivel";
         conn = ConnectionFactory.getConnection();
        
         try {

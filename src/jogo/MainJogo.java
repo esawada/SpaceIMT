@@ -4,6 +4,8 @@ import java.util.Timer;
 
 import javax.swing.JFrame;
 
+import POJO.Globals;
+
 
 
 public class MainJogo {
@@ -21,7 +23,7 @@ public class MainJogo {
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		SpaceIMT invasaoAlien = new SpaceIMT(1, 2, janela);
+		SpaceIMT invasaoAlien = new SpaceIMT(Globals.getInstance(1).getIdUsuario(), 2, janela);
 		invasaoAlien.setBounds(0, 0, 1366, 768);
 		
 		janela.add(invasaoAlien);
@@ -42,7 +44,7 @@ public class MainJogo {
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		SpaceIMT invasaoAlien = new SpaceIMT(0, 2, janela);
+		SpaceIMT invasaoAlien = new SpaceIMT(Globals.getInstance(1).getIdUsuario(), 2, janela);
 		invasaoAlien.setBounds(0, 0, 1366, 768);
 		
 		janela.add(invasaoAlien);

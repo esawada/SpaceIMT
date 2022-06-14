@@ -110,8 +110,8 @@ public class ADM extends JFrame {
 			@Override
 			public void mouseClicked (MouseEvent e) {
 				//if(JOptionPane.showConfirmDialog(null, "Voc� quer fechar o jogo?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {                                                                 
-				frmPerfil perfil = new frmPerfil();
-				perfil.setVisible(true);
+				frmConquista conquista = new frmConquista();
+				conquista.setVisible(true);
 				
 			}
 		});		
@@ -167,8 +167,8 @@ public class ADM extends JFrame {
 		panelEdit.addMouseListener(new PanelButtonMouseAdapter(panelEdit) {
 			@Override
 			public void mouseClicked (MouseEvent e) {
-				//ADM adm = new ADM();
-				//adm.setVisible(true);
+				frmconfiguracaoAdm edit = new frmconfiguracaoAdm();
+				edit.setVisible(true);
 			}
 		});		
 		panelEdit.setBackground(Color.DARK_GRAY);
@@ -188,13 +188,7 @@ public class ADM extends JFrame {
 		lblEdit.setBounds(76, 0, 192, 71);
 		panelEdit.add(lblEdit);
 		
-		JPanel panelExit = new JPanel();
-		panelExit.addMouseListener(new PanelButtonMouseAdapter(panelExit) {
-			@Override
-			public void mouseClicked (MouseEvent e) {
-				//menuClicked(panelSair);
-			}
-		});		
+		JPanel panelExit = new JPanel();		
 		panelExit.setBackground(Color.DARK_GRAY);
 		panelExit.setBounds(0, 640, 286, 81);
 		panelMenu.add(panelExit);

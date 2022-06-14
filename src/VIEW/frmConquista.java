@@ -19,13 +19,37 @@ public class frmConquista extends javax.swing.JFrame {
      * Creates new form frmConquista
      */
     public frmConquista() {
-        Globals globals = Globals.getInstance(1);
-        ConquistaDAO dao = new ConquistaDAO();
-        ArrayList<ExibirConquistaDTO> lista = dao.ListarConquistaUsuario(1);
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(frmConquista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(frmConquista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(frmConquista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(frmConquista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
-        initComponents();
-        lbConquistas.setText(String.format(lbConquistas.getText(), globals.getNickname()));
-        popularTabelaConquista(lista);
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+               
+                Globals globals = Globals.getInstance(1);
+                ConquistaDAO dao = new ConquistaDAO();
+                ArrayList<ExibirConquistaDTO> lista = dao.ListarConquistaUsuario(globals.getIdUsuario());
+                
+                initComponents();
+                lbConquistas.setText(String.format(lbConquistas.getText(), globals.getNickname()));
+                popularTabelaConquista(lista);
+            }
+        });
     }
 
     private void popularTabelaConquista(ArrayList<ExibirConquistaDTO> lista) {
@@ -54,16 +78,27 @@ public class frmConquista extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         conquistaTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbConquistas.setFont(new java.awt.Font("Impact", 2, 36)); // NOI18N
         lbConquistas.setForeground(new java.awt.Color(255, 0, 0));
         lbConquistas.setText("%s - CONQUISTAS DESBLOQUEADAS");
         getContentPane().add(lbConquistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 500, 50));
+
+        jButton1.setBackground(new java.awt.Color(200, 0, 0));
+        jButton1.setFont(new java.awt.Font("Lucida Console", 1, 12)); // NOI18N
+        jButton1.setText("Voltar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmConquista.this.dispose();
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 300, -1, 30));
 
         conquistaTable.setBackground(new java.awt.Color(0, 0, 0));
         conquistaTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -128,6 +163,7 @@ public class frmConquista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbConquistas;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 
 }
