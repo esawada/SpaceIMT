@@ -66,6 +66,7 @@ public class frmConquista extends javax.swing.JFrame {
         getContentPane().add(lbConquistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 500, 50));
 
         conquistaTable.setBackground(new java.awt.Color(0, 0, 0));
+        conquistaTable.setForeground(new java.awt.Color(255, 255, 255));
         conquistaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
