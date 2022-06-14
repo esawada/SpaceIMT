@@ -86,10 +86,10 @@ public class frmConquista extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbConquistas.setFont(new java.awt.Font("Impact", 2, 36)); // NOI18N
+        lbConquistas.setFont(new java.awt.Font("Impact", 2, 31)); // NOI18N
         lbConquistas.setForeground(new java.awt.Color(255, 0, 0));
         lbConquistas.setText("%s - CONQUISTAS DESBLOQUEADAS");
-        getContentPane().add(lbConquistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 500, 50));
+        getContentPane().add(lbConquistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 450, 50));
 
         jButton1.setBackground(new java.awt.Color(200, 0, 0));
         jButton1.setFont(new java.awt.Font("Lucida Console", 1, 12)); // NOI18N
