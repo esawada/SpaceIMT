@@ -18,6 +18,7 @@ public class frmCadastroView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setResizable(false);
         jTextField1 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();

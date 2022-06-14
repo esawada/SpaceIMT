@@ -38,6 +38,7 @@ public class Aba_Options extends JFrame {
 	public Aba_Options() {
 		Image img_Espaco = new ImageIcon(Aba_Options.class.getResource("imgs/Espaço.jpg")).getImage().getScaledInstance(1200,710,Image.SCALE_SMOOTH);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setResizable(false);
 		setBounds(100, 0, 1100, 740);
 		Aba_Options = new JPanel();
 		Aba_Options.setBorder(new EmptyBorder(5, 5, 5, 5));

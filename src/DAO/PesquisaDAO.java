@@ -18,7 +18,7 @@ public class PesquisaDAO {
     
     public ArrayList<UsuarioDTO> PesquisarUsuario(){
   
-        String sql = "SELECT * FROM usuario ORDER BY nivel";
+        String sql = "SELECT * FROM usuario ORDER BY numeroFase desc";
         conn = ConnectionFactory.getConnection();
        
         try {
@@ -30,7 +30,6 @@ public class PesquisaDAO {
             UsuarioDTO usuarioOBJ = new UsuarioDTO();
             
             usuarioOBJ.setNickname(rs.getString("nickname"));
-            usuarioOBJ.setNivel(rs.getInt("nivel"));
             usuarioOBJ.setNumeroFase(rs.getInt("numeroFase"));
             
             lista.add(usuarioOBJ);

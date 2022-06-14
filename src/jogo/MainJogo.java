@@ -42,6 +42,7 @@ public class MainJogo {
 		janela.setLayout(null);
 		janela.setLocationRelativeTo(null);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setResizable(false);
 		
 		
 		SpaceIMT invasaoAlien = new SpaceIMT(Globals.getInstance(1).getIdUsuario(), 2, janela);

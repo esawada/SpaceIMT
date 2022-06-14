@@ -43,6 +43,8 @@ public class ADM extends JFrame {
 
 
 	public ADM() {
+
+		setResizable(false);
 		setBackground(Color.BLACK);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

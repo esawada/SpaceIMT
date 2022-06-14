@@ -83,6 +83,7 @@ public class frmConquista extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbConquistas.setFont(new java.awt.Font("Impact", 2, 36)); // NOI18N

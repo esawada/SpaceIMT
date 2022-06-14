@@ -42,7 +42,7 @@ public class frmRanking extends javax.swing.JFrame {
                 initComponents();
                 listarValores();
             }
-        });        
+        });
     }
 
     /**
@@ -60,6 +60,7 @@ public class frmRanking extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabelaUsuario.setBackground(new java.awt.Color(0, 0, 0));
@@ -167,7 +168,6 @@ public class frmRanking extends javax.swing.JFrame {
             for (int num = 0; num < lista.size(); num++) {
                 model.addRow(new Object[]{
                     lista.get(num).getNickname(),
-                    lista.get(num).getNivel(),
                     lista.get(num).getNumeroFase()
                 });
             }

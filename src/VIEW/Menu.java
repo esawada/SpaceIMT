@@ -43,6 +43,7 @@ public class Menu extends JFrame {
 
 
 	public Menu() {
+		setResizable(false);
 		setBackground(Color.BLACK);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
