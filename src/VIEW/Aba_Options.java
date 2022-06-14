@@ -88,15 +88,15 @@ public class Aba_Options extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				JOptionPane.showMessageDialog(Aba_Options,
-				    "Paulo Eduardo Palauro. RA: 22.01324-5 \n " +
+				"Paulo Eduardo Palauro. RA: 22.01324-5 \n " +
 					"Isabella Madureira Sanches. RA: 22.00108-5 \n" +
 				    "Pedro Guilherme Luxelane Tolone. RA: 19.02530-0 \n" +
 					"Eduardo Takase Sawada RA: 22.00865-9  \n" +
 				    "Guilherme Toffanelli Ghenaim RA: 22.00504-8 \n"
-				   ,"A plain message",
+					,"A plain message",
 				    JOptionPane.PLAIN_MESSAGE);
-			}
-		});
+				}
+			});
 		panelCredito.setBackground(new Color(0, 0, 0, 0));
 		panelCredito.setBounds(10, 671, 158, 32);
 		Aba_Options.add(panelCredito);
@@ -116,6 +116,24 @@ public class Aba_Options extends JFrame {
 		lblCredito.setBounds(47, 0, 124, 32);
 		panelCredito.add(lblCredito);
 		
+		
+		JPanel voltar = new JPanel();
+		voltar.setBackground(new Color(0, 0, 0, 0));
+		voltar.setBounds(950, 671, 158, 32);
+		javax.swing.JButton jButton1;
+		jButton1 = new javax.swing.JButton();
+		jButton1.setBackground(new java.awt.Color(200, 0, 0));
+		jButton1.setFont(new java.awt.Font("Lucida Console", 1, 12)); // NOI18N
+		jButton1.setText("Voltar");
+        jButton1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Aba_Options.this.dispose();
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 671, -1, 30));
+		voltar.add(jButton1);
+		Aba_Options.add(voltar);
 		
 		JLabel lblNewLabel = new JLabel("<html>O jogo consiste em acertar perguntas sobre a Linguagem de Programa\u00E7\u00E3o Python!\r\n<br/>\r\n<br/> \r\nQue consiste em varios niveis de dificuldade, comen\u00E7ando das perguntas mais faceis e indo para as mais complicadas!\r\n<br/>\r\n<br/>\r\nPara isso voc\u00EA jogador, ir\u00E1 controlar uma nave e vai atirar na alternativa que achar correta.\r\n\r\n\r\n<br/>\r\n<br/>\r\nCaso acerte a alternativa correta, ir\u00E1 avan\u00E7ar de fase, se errar perdera 1 vida. \r\n<br/>\r\n<br/>\r\nSe perder todas suas vidas o jogo dar\u00E1 GAME OVER!\r\n\r\n</html>", SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("OCR A Extended", Font.PLAIN, 19));

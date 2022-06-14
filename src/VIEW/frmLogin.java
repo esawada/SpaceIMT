@@ -5,6 +5,8 @@ package VIEW;
 
 import DAO.UsuarioDAO;
 import DTO.UsuarioDTO;
+import POJO.Globals;
+
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -177,9 +179,16 @@ public class frmLogin extends javax.swing.JFrame {
             
 
             if (rsusuariodao.next()) {
-                // chamar tela que eu quero abrir 
-                Menu objfrmMenu = new Menu();
-                objfrmMenu.setVisible(true);
+                // chamar tela que eu quero abrir
+                int id = Globals.getInstance(objusuariodao.GetIdbyEmail(objusuariodto.getEmail_usuario())).getIdUsuario();
+                boolean tipo = objusuariodao.GetTipoById(id);
+                if(tipo) {
+                    ADM adm = new ADM(); 
+                    adm.setVisible(true);
+                } else {
+                    Menu objfrmMenu = new Menu();
+                    objfrmMenu.setVisible(true);
+                }
 
                 dispose();
             } else {

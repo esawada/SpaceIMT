@@ -110,8 +110,8 @@ public class Menu extends JFrame {
 			@Override
 			public void mouseClicked (MouseEvent e) {
 				//if(JOptionPane.showConfirmDialog(null, "Voc� quer fechar o jogo?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {                                                                 
-				frmPerfil perfil = new frmPerfil();
-				perfil.setVisible(true);
+				frmConquista conquista = new frmConquista();
+				conquista.setVisible(true);
 				
 			}
 		});		
@@ -197,29 +197,30 @@ public class Menu extends JFrame {
 		lblExitIMG.setIcon(new ImageIcon(img_Exit));
 		panelExit.add(lblExitIMG);
 		
-		JPanel panelConq = new JPanel();
-		panelConq.addMouseListener(new PanelButtonMouseAdapter(panelConq) {
+		JPanel panelRanking = new JPanel();
+		panelRanking.addMouseListener(new PanelButtonMouseAdapter(panelRanking) {
 			@Override
 			public void mouseClicked (MouseEvent e) {
-				//menuClicked(panelSair);
+				frmRanking ranking = new frmRanking();
+				ranking.setVisible(true);
 			}
 		});		
-		panelConq.setBackground(Color.DARK_GRAY);
-		panelConq.setBounds(0, 543, 286, 71);
-		panelMenu.add(panelConq);
-		panelConq.setLayout(null);
+		panelRanking.setBackground(Color.DARK_GRAY);
+		panelRanking.setBounds(0, 543, 286, 71);
+		panelMenu.add(panelRanking);
+		panelRanking.setLayout(null);
 		
 		JLabel lblIMGConq = new JLabel("");
 		lblIMGConq.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIMGConq.setBounds(0, 0, 72, 71);
 		lblIMGConq.setIcon(new ImageIcon(img_Conq));
-		panelConq.add(lblIMGConq);
+		panelRanking.add(lblIMGConq);
 		
 		JLabel lblTXTConq = new JLabel("Ranking");
 		lblTXTConq.setFont(new Font("OCR A Extended", Font.PLAIN, 40));
 		lblTXTConq.setForeground(new Color(255, 255, 255));
 		lblTXTConq.setBounds(72, 10, 192, 51);
-		panelConq.add(lblTXTConq);
+		panelRanking.add(lblTXTConq);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);

@@ -33,7 +33,7 @@ public class UsuarioDAO {
             return null;
         }
     }
-    public static int GetFaseByID(int idUsuario) {
+    public int GetFaseByID(int idUsuario) {
     
     String sql = "SELECT numeroFase FROM usuario WHERE idUsuario = ? ";
     int fase = 0;
@@ -91,5 +91,49 @@ public class UsuarioDAO {
                 e.printStackTrace();
                 }
             return nickname;
+    }
+
+    public int GetIdbyEmail(String email) {
+        String sql = "SELECT idUsuario FROM usuario WHERE email = ? ";
+            Connection con = ConnectionFactory.getConnection();
+            int idUsuario = 0;
+    
+            try (PreparedStatement stmt = con.prepareStatement(sql)) {
+    
+                stmt.setString(1, email);
+                ResultSet resultSet = stmt.executeQuery();
+                    
+                    if (resultSet.next()) {
+                        idUsuario = resultSet.getInt("idUsuario");
+                    }
+    
+                    stmt.close();
+                    con.close();
+                } catch (Exception e) {
+                e.printStackTrace();
+                }
+            return idUsuario;
+    }
+
+    public boolean GetTipoById(int idUsuario) {
+        String sql = "SELECT tipo FROM usuario WHERE idUsuario = ? ";
+        boolean tipo = false;
+        Connection con = ConnectionFactory.getConnection();
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setInt(1, idUsuario);
+            ResultSet resultSet = stmt.executeQuery();
+                
+                if (resultSet.next()) {
+                    tipo = resultSet.getBoolean("tipo");
+                }
+
+                stmt.close();
+                con.close();
+            } catch (Exception e) {
+            e.printStackTrace();
+            }
+        return tipo;
     }
 }
