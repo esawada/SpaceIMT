@@ -35,7 +35,7 @@
     <Component class="javax.swing.JLabel" name="lbConquistas">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Impact" size="36" style="2"/>
+          <Font name="Impact" size="32" style="2"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -44,7 +44,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="60" y="20" width="500" height="50"/>
+          <AbsoluteConstraints x="90" y="20" width="450" height="50"/>
         </Constraint>
       </Constraints>
     </Component>
