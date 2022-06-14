@@ -64,6 +64,7 @@ public class frmRanking extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabelaUsuario.setBackground(new java.awt.Color(0, 0, 0));
+        tabelaUsuario.setForeground(new java.awt.Color(255, 255, 255));
         tabelaUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
