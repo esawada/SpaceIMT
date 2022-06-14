@@ -5,7 +5,6 @@
 package VIEW;
 
 import DAO.ConquistaDAO;
-import DAO.UsuarioDAO;
 import DTO.ExibirConquistaDTO;
 import POJO.Globals;
 import java.util.ArrayList;

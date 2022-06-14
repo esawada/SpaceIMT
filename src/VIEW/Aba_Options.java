@@ -1,4 +1,5 @@
-import java.awt.BorderLayout;
+package VIEW;
+
 import java.awt.EventQueue;
 import java.awt.Image;
 
@@ -14,7 +15,6 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JSplitPane;
 
 public class Aba_Options extends JFrame {
 
@@ -36,7 +36,7 @@ public class Aba_Options extends JFrame {
 
 	
 	public Aba_Options() {
-		Image img_Espaco = new ImageIcon(Aba_Options.class.getResource("imgs/Espaço.jpg")).getImage().getScaledInstance(1200,710,Image.SCALE_SMOOTH);
+		Image img_Espaco = new ImageIcon(Aba_Options.class.getResource("imgs/EspaÃ§o.jpg")).getImage().getScaledInstance(1200,710,Image.SCALE_SMOOTH);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 0, 1100, 740);
 		Aba_Options = new JPanel();

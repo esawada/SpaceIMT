@@ -1,38 +1,38 @@
+package VIEW;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Image;
-import java.awt.Window;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+
+import jogo.MainJogo;
+
 import java.awt.Font;
 
-public class Frame extends JFrame {
+public class Menu extends JFrame {
 
 	private JPanel contentPane;
 
-	private Image img_Python = new ImageIcon(Frame.class.getResource("imgs/Python.png")).getImage().getScaledInstance(100,100,Image.SCALE_SMOOTH);
-	private Image img_Start = new ImageIcon(Frame.class.getResource("imgs/Start.png")).getImage().getScaledInstance(40,40,Image.SCALE_SMOOTH);
-	private Image img_Profile = new ImageIcon(Frame.class.getResource("imgs/Profile.png")).getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-	private Image img_Option = new ImageIcon(Frame.class.getResource("imgs/Settings.png")).getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-	private Image img_Exit = new ImageIcon(Frame.class.getResource("imgs/Exit.png")).getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-	private Image img_Comeco = new ImageIcon(Frame.class.getResource("imgs/Nave Space.jpg")).getImage().getScaledInstance(1000,750,Image.SCALE_SMOOTH);
-	private Image img_Conq = new ImageIcon(Frame.class.getResource("imgs/Conquista.png")).getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	private Image img_Python = new ImageIcon(Menu.class.getResource("imgs/Python.png")).getImage().getScaledInstance(100,100,Image.SCALE_SMOOTH);
+	private Image img_Start = new ImageIcon(Menu.class.getResource("imgs/Start.png")).getImage().getScaledInstance(40,40,Image.SCALE_SMOOTH);
+	private Image img_Profile = new ImageIcon(Menu.class.getResource("imgs/Profile.png")).getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	private Image img_Option = new ImageIcon(Menu.class.getResource("imgs/Settings.png")).getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	private Image img_Exit = new ImageIcon(Menu.class.getResource("imgs/Exit.png")).getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	private Image img_Comeco = new ImageIcon(Menu.class.getResource("imgs/Nave Space.jpg")).getImage().getScaledInstance(1000,750,Image.SCALE_SMOOTH);
+	private Image img_Conq = new ImageIcon(Menu.class.getResource("imgs/Conquista.png")).getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Frame frame = new Frame();
+					Menu frame = new Menu();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +42,7 @@ public class Frame extends JFrame {
 	}
 
 
-	public Frame() {
+	public Menu() {
 		setBackground(Color.BLACK);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,9 +83,8 @@ public class Frame extends JFrame {
 		panelStart.addMouseListener(new PanelButtonMouseAdapter(panelStart) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-					//Space spaceinvaders = new Space
-					//space.setVisible(true);
-					//Frame.this.dispose();
+					MainJogo main = new MainJogo();
+					Menu.this.dispose();
 				}
 			//}
 		});
@@ -110,8 +109,8 @@ public class Frame extends JFrame {
 		panelProfile.addMouseListener(new PanelButtonMouseAdapter(panelProfile) {
 			@Override
 			public void mouseClicked (MouseEvent e) {
-				//if(JOptionPane.showConfirmDialog(null, "Você quer fechar o jogo?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {                                                                 
-				Aba_Profile perfil = new Aba_Profile();
+				//if(JOptionPane.showConfirmDialog(null, "Vocï¿½ quer fechar o jogo?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {                                                                 
+				frmPerfil perfil = new frmPerfil();
 				perfil.setVisible(true);
 				
 			}
@@ -178,8 +177,8 @@ public class Frame extends JFrame {
 		panelExit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Você quer fechar o jogo?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {                                                                 
-					Frame.this.dispose();
+				if(JOptionPane.showConfirmDialog(null, "Deseja fechar o jogo?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {                                                                 
+					Menu.this.dispose();
 					
 				}
 			}

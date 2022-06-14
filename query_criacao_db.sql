@@ -7,7 +7,6 @@ CREATE TABLE usuario (
     email VARCHAR(100) UNIQUE NOT NULL,
     nickname VARCHAR(30) UNIQUE NOT NULL,
     tipo BOOL DEFAULT FALSE,
-    nivel DOUBLE DEFAULT 0,
     numeroFase INTEGER DEFAULT 0
 );
 insert into usuario (senha, email, nickname, tipo) values ('123', 'adm@maua.br', 'adm',true);

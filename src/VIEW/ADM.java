@@ -1,18 +1,19 @@
-import java.awt.BorderLayout;
+package VIEW;
+
 import java.awt.EventQueue;
 import java.awt.Image;
-import java.awt.Window;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+
+import jogo.MainJogo;
+
 import java.awt.Font;
 
 public class ADM extends JFrame {
@@ -82,9 +83,8 @@ public class ADM extends JFrame {
 		panelStart.addMouseListener(new PanelButtonMouseAdapter(panelStart) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-					//Space spaceinvaders = new Space
-					//space.setVisible(true);
-					//Frame.this.dispose();
+					MainJogo main = new MainJogo();
+					ADM.this.dispose();
 				}
 			//}
 		});
@@ -109,8 +109,8 @@ public class ADM extends JFrame {
 		panelProfile.addMouseListener(new PanelButtonMouseAdapter(panelProfile) {
 			@Override
 			public void mouseClicked (MouseEvent e) {
-				//if(JOptionPane.showConfirmDialog(null, "Você quer fechar o jogo?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {                                                                 
-				Aba_Profile perfil = new Aba_Profile();
+				//if(JOptionPane.showConfirmDialog(null, "Vocï¿½ quer fechar o jogo?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {                                                                 
+				frmPerfil perfil = new frmPerfil();
 				perfil.setVisible(true);
 				
 			}
@@ -202,7 +202,7 @@ public class ADM extends JFrame {
 		panelExit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Você quer fechar o jogo?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {                                                                 
+				if(JOptionPane.showConfirmDialog(null, "Deseja fechar o jogo?", "Confirmation", JOptionPane.YES_NO_OPTION) == 0) {                                                                 
 					ADM.this.dispose();
 					
 				}

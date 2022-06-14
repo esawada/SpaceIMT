@@ -22,7 +22,7 @@ import DAO.QuestaoDAO;
 import DAO.UsuarioDAO;
 import DTO.ChecarConquistaDTO;
 import DTO.ExibirConquistaDTO;
-import VIEW.frmMenu;
+import VIEW.Menu;
 import classesObj.Nave;
 import classesObj.Questao;
 import classesObj.Tiro;
@@ -213,7 +213,7 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 						switch (j) {
 							case 0: 
 								// System.out.println("menu");
-								frmMenu menu = new frmMenu();
+								Menu menu = new Menu();
 								menu.setVisible(true);
 								janela.dispose();
 								break;
@@ -325,27 +325,34 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 			g.drawString(String.format("Vida: %d/%d", vidaAtual, vida), 1150, 670);
 			g.drawString(String.format("Streak: %d", streak), 5, 670);
 			g.drawString(String.format("Tempo: %f", tempo), 5, 700);
+		}	
 			ConquistaDAO conquistaDAO = new ConquistaDAO();
-			ExibirConquistaDTO conquistaDTO = new ExibirConquistaDTO();
+			ExibirConquistaDTO exibirconquistaDTO = new ExibirConquistaDTO();
 			if(listaExibirConquistas.size() > 0){
+				Boolean query = true;
+				if(query) {
+					query = false;
+					exibirconquistaDTO = conquistaDAO.getConquistaById(listaExibirConquistas.get(0));
+				}
 				repeticoes++;
+				g.setColor(Color.white);
 				g.setFont(fontePergunta);
-				g.drawString(String.format("%s", conquistaDAO.getConquistaById(listaExibirConquistas.get(0)).getTitulo()), 600, 660);
+				g.drawString(String.format("%s", exibirconquistaDTO.getTitulo()), 600, 660);
 				g.setFont(fonteAlternativas);
-				g.drawString(String.format("%s", conquistaDAO.getConquistaById(listaExibirConquistas.get(0)).getDescricao()), 500, 700);
+				g.drawString(String.format("%s", exibirconquistaDTO.getDescricao()), 500, 700);
 				if(repeticoes >= 120) {
 					repeticoes = 0;
 					listaExibirConquistas.remove(0);
 				}
 			}
-		}	
 		if(ganhou) {
+			if(!pausado && !jogoAcabado){
+				streak++;
+				listaExibirConquistas.addAll(checarConquista(idUsuario, streak, false));
+			}
 			if(numeroDeQuestoesAtual <= numeroDeQuestoes - 1) {
 				numeroDeQuestoesAtual++;
-				streak++;
 				ganhou = false;
-				listaExibirConquistas.addAll(checarConquista(idUsuario, tempo, true));
-				listaExibirConquistas.addAll(checarConquista(idUsuario, streak, false));
 				tiros.removeAll(tiros);
 				inimigos.removeAll(inimigos);
 				CriaInimigos(listaDificuldade.get(numeroDeQuestoesAtual - 1));
@@ -361,6 +368,7 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 				if(FechandoEm <= 0) {
 					pausado = false;
 					if(!jogoAcabado) {
+						listaExibirConquistas.addAll(checarConquista(idUsuario, tempo, true));
 						tiros.removeAll(tiros);
 						inimigos.removeAll(inimigos);	
 						CriaInimigosMenu();

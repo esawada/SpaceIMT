@@ -178,7 +178,7 @@ public class frmLogin extends javax.swing.JFrame {
 
             if (rsusuariodao.next()) {
                 // chamar tela que eu quero abrir 
-                frmMenu objfrmMenu = new frmMenu();
+                Menu objfrmMenu = new Menu();
                 objfrmMenu.setVisible(true);
 
                 dispose();
