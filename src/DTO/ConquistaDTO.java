@@ -1,9 +1,10 @@
 package DTO;
 
-public class ChecarConquistaDTO {
+public class ConquistaDTO {
     private int idConquista;
     private double dadoConquista;
     private boolean tipoConquista;
+    private String titulo, descricao;
 
     public int getIdConquista() {
         return idConquista;
@@ -17,7 +18,7 @@ public class ChecarConquistaDTO {
         return dadoConquista;
     }
 
-    public void setDadoConquista(int dadoConquista) {
+    public void setDadoConquista(Double dadoConquista) {
         this.dadoConquista = dadoConquista;
     }
 
@@ -27,5 +28,21 @@ public class ChecarConquistaDTO {
 
     public void setTipoConquista(boolean tipoConquista) {
         this.tipoConquista = tipoConquista;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }

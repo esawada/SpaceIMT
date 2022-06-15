@@ -4,6 +4,9 @@
  */
 package VIEW;
 
+import DAO.QuestaoDAO;
+import classesObj.Questao;
+
 /**
  *
  * @author Isabella
@@ -14,9 +17,31 @@ public class frmCriarQuestao extends javax.swing.JFrame {
      * Creates new form frmCriarQuestao
      */
     public frmCriarQuestao() {
-        initComponents();
-    }
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(frmCriarQuestao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(frmCriarQuestao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(frmCriarQuestao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(frmCriarQuestao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                initComponents();
+            }
+        });
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,92 +55,125 @@ public class frmCriarQuestao extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         jTextField1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        pesquisar = new javax.swing.JButton();
+        criar = new javax.swing.JButton();
+        idQuestao = new javax.swing.JTextField();
+        dificuldade = new javax.swing.JTextField();
+        alt1 = new javax.swing.JTextField();
+        alt2 = new javax.swing.JTextField();
+        alt3 = new javax.swing.JTextField();
+        altCorreta = new javax.swing.JTextField();
+        pergunta = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-
+        Questao exibirQuestao = new Questao();
+        
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(jList1);
-
+        
         jTextField1.setText("jTextField1");
-
+        
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VIEW/perfil.jpg"))); // NOI18N
         jLabel8.setText("jLabel8");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        
+        pesquisar.setBackground(new java.awt.Color(0, 153, 204));
+        pesquisar.setFont(new java.awt.Font("Leelawadee UI", 0, 12)); // NOI18N
+        pesquisar.setForeground(new java.awt.Color(255, 255, 255));
+        pesquisar.setText("Pesquisar");
+        pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                if(idQuestao.getText() != null) {
+                    try {
+                        QuestaoDAO questaoDAO = new QuestaoDAO();
+                        Questao questao = new Questao();
+                        questao = questaoDAO.getQuestaoByID(Integer.parseInt(idQuestao.getText()));
+                        if(questao != null) {
+                            pergunta.setText(questao.getPergunta());
+                            dificuldade.setText(String.valueOf(questao.getDificuldade()));
+                            alt1.setText(questao.getAlt1());
+                            alt2.setText(questao.getAlt2());
+                            alt3.setText(questao.getAlt3());
+                            altCorreta.setText(questao.getAltCorreta());
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        getContentPane().add(pesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 100, 30));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 51));
-        jButton1.setFont(new java.awt.Font("Leelawadee UI", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 51, 204));
-        jButton1.setText("Pesquisar");
+        idQuestao.setBackground(new java.awt.Color(36, 58, 115));
+        idQuestao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ID Questão", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        getContentPane().add(idQuestao, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 220, -1));
+
+        pergunta.setBackground(new java.awt.Color(51, 51, 51));
+        pergunta.setForeground(new java.awt.Color(255, 255, 255));
+        pergunta.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pergunta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        getContentPane().add(pergunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 210,-1));
+        
+        alt1.setBackground(new java.awt.Color(51, 51, 51));
+        alt1.setForeground(new java.awt.Color(255, 255, 255));
+        alt1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alternativa 1:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        getContentPane().add(alt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 210, -1));
+        
+        alt2.setBackground(new java.awt.Color(51, 51, 51));
+        alt2.setForeground(new java.awt.Color(255, 255, 255));
+        alt2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alternativa 2:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        getContentPane().add(alt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 210, -1));
+
+        alt3.setBackground(new java.awt.Color(51, 51, 51));
+        alt3.setForeground(new java.awt.Color(255, 255, 255));
+        alt3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alternativa 3:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        getContentPane().add(alt3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 210, -1));
+        
+        altCorreta.setBackground(new java.awt.Color(51, 51, 51));
+        altCorreta.setForeground(new java.awt.Color(255, 255, 255));
+        altCorreta.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alternativa correta:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        getContentPane().add(altCorreta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 210, -1));
+        
+        dificuldade.setBackground(new java.awt.Color(51, 51, 51));
+        dificuldade.setForeground(new java.awt.Color(255, 255, 255));
+        dificuldade.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dificuldade:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        getContentPane().add(dificuldade, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 210, -1));
+        
+        criar.setBackground(new java.awt.Color(0, 153, 204));
+        criar.setFont(new java.awt.Font("Leelawadee UI", 0, 12)); // NOI18N
+        criar.setForeground(new java.awt.Color(255, 255, 255));
+        criar.setText("Criar/Atualizar ");
+        criar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QuestaoDAO questaoDAO = new QuestaoDAO();
+                if(questaoDAO.questaoExists(Integer.parseInt(idQuestao.getText()))) {
+                    questaoDAO.updateQuestao(Integer.parseInt(idQuestao.getText()), alt1.getText(), alt2.getText(), alt3.getText(), altCorreta.getText(), pergunta.getText(), Integer.parseInt(dificuldade.getText()));
+                } else {
+                    questaoDAO.createQuestao(alt1.getText(), alt2.getText(), alt3.getText(), altCorreta.getText(), pergunta.getText(), Integer.parseInt(dificuldade.getText()));
+                }
+                frmCriarQuestao.this.dispose();
+            }
+        });
+        getContentPane().add(criar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 485, 120, 30));
+
+        jButton1 = new javax.swing.JButton();
+        jButton1.setBackground(new java.awt.Color(200, 0, 0));
+        jButton1.setFont(new java.awt.Font("Lucida Console", 1, 12)); // NOI18N
+        jButton1.setText("Voltar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                frmCriarQuestao.this.dispose();
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 100, 30));
-
-        jButton2.setBackground(new java.awt.Color(0, 153, 153));
-        jButton2.setFont(new java.awt.Font("Leelawadee UI", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Criar/Atualizar ");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 120, 30));
-
-        jTextField2.setBackground(new java.awt.Color(255, 255, 0));
-        jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ID Questão", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(51, 51, 255))); // NOI18N
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 220, 40));
-        jTextField2.getAccessibleContext().setAccessibleName("Questão");
-
-        jTextField3.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField3.setForeground(new java.awt.Color(255, 255, 204));
-        jTextField3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dificuldade:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 210, 30));
-
-        jTextField4.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField4.setForeground(new java.awt.Color(255, 255, 204));
-        jTextField4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alternativa 1:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 210, -1));
-
-        jTextField5.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField5.setForeground(new java.awt.Color(255, 255, 204));
-        jTextField5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alternativa 2:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 210, 40));
-
-        jTextField6.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField6.setForeground(new java.awt.Color(255, 255, 204));
-        jTextField6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alternativa 3:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 210, 40));
-
-        jTextField8.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField8.setForeground(new java.awt.Color(255, 255, 204));
-        jTextField8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alternativa correta:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
-        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 210, 40));
-
-        jTextField7.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField7.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Questão", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 210, -1));
-
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 500, -1, 30));
+        
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VIEW/perfil.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 380));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -164,19 +222,20 @@ public class frmCriarQuestao extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton pesquisar;
+    private javax.swing.JButton criar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField idQuestao;
+    private javax.swing.JTextField dificuldade;
+    private javax.swing.JTextField alt1;
+    private javax.swing.JTextField alt2;
+    private javax.swing.JTextField alt3;
+    private javax.swing.JTextField pergunta;
+    private javax.swing.JTextField altCorreta;
     // End of variables declaration//GEN-END:variables
 }

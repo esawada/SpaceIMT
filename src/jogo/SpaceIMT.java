@@ -20,8 +20,7 @@ import javax.swing.JPanel;
 import DAO.ConquistaDAO;
 import DAO.QuestaoDAO;
 import DAO.UsuarioDAO;
-import DTO.ChecarConquistaDTO;
-import DTO.ExibirConquistaDTO;
+import DTO.ConquistaDTO;
 import POJO.Globals;
 import VIEW.ADM;
 import VIEW.Menu;
@@ -336,12 +335,12 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 			g.drawString(String.format("Tempo: %f", tempo), 5, 700);
 		}	
 			ConquistaDAO conquistaDAO = new ConquistaDAO();
-			ExibirConquistaDTO exibirconquistaDTO = new ExibirConquistaDTO();
+			ConquistaDTO exibirconquistaDTO = new ConquistaDTO();
 			if(listaExibirConquistas.size() > 0){
 				Boolean query = true;
 				if(query) {
 					query = false;
-					exibirconquistaDTO = conquistaDAO.getConquistaById(listaExibirConquistas.get(0));
+					exibirconquistaDTO = conquistaDAO.getExibirConquistaById(listaExibirConquistas.get(0));
 				}
 				repeticoes++;
 				g.setColor(Color.white);
@@ -479,10 +478,10 @@ public class SpaceIMT extends JPanel implements Runnable, KeyListener{
 
 	private List<Integer> checarConquista(int idUsuario, double dadoConquista, Boolean tipoConquista) {
 		ConquistaDAO conquistaDAO = new ConquistaDAO();
-		List<ChecarConquistaDTO> listaConquista = new ArrayList<>();
+		List<ConquistaDTO> listaConquista = new ArrayList<>();
 		List<Integer> listaIds = new ArrayList<>();
 		listaConquista = conquistaDAO.ListarConquistaUsuarioNaoLiberadas(idUsuario, tipoConquista);
-		for (ChecarConquistaDTO conquista : listaConquista) {
+		for (ConquistaDTO conquista : listaConquista) {
 			if(tipoConquista && dadoConquista <= conquista.getDadoConquista()){
 				conquistaDAO.LiberarConquista(idUsuario, conquista.getIdConquista());
 				listaIds.add(conquista.getIdConquista());

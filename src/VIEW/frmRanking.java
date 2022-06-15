@@ -102,7 +102,6 @@ public class frmRanking extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 400, -1, 30));
 
-
         jLabel2.setFont(new java.awt.Font("Impact", 2, 47)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 0));
         jLabel2.setText("RANKING");

@@ -37,7 +37,7 @@ CREATE TABLE usuarioConquista (
     PRIMARY KEY (idUsuario , idConquista)
 );
 
-insert into questao values (null, '==', '>=','<=', '!=','Qual operador a seguir é o correspondente da operação', 0);
+insert into questao values (null, '==', '>=','<=', '!=','Qual operador a seguir é o correspondente da operação “Comparação de diferença”', 0);
 insert into questao values (null, 'Números Inteiros', 'Sequência ordenada de carateres', 'Números Reais', 'Valores Lógicos', 'Os BOOLEANS são descritos por:', 0);
 insert into questao values (null, '{"nome": "maçã", "cor": "verde"}','{"maçã", "banana", "cereja"}','("maçã", "banana", "cereja")', '["maçã", "banana", "cereja"]','Qual dessas coleções define uma LISTA?', 0);
 insert into questao values (null, 'Tipo de uma string', 'Não representa nada', 'Comando para ‘embaralhar’', 'Tamanho de uma string', 'A função “len” representa:', 0);

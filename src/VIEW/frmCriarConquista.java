@@ -4,6 +4,9 @@
  */
 package VIEW;
 
+import DAO.ConquistaDAO;
+import DTO.ConquistaDTO;
+
 /**
  *
  * @author Isabella
@@ -14,7 +17,30 @@ public class frmCriarConquista extends javax.swing.JFrame {
      * Creates new form frmCriarConquista
      */
     public frmCriarConquista() {
-        initComponents();
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(frmCriarConquista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(frmCriarConquista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(frmCriarConquista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(frmCriarConquista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                initComponents();
+            }
+        });
     }
 
     /**
@@ -26,75 +52,96 @@ public class frmCriarConquista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        idConquista = new javax.swing.JTextField();
+        pesquisar = new javax.swing.JButton();
+        tituloConquista = new javax.swing.JTextField();
+        dadoConquista = new javax.swing.JTextField();
+        descricaoConquista = new javax.swing.JTextField();
+        tipoConquista = new javax.swing.JTextField();
+        criar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        
+        pesquisar.setBackground(new java.awt.Color(0, 153, 204));
+        pesquisar.setFont(new java.awt.Font("Leelawadee UI", 0, 12)); // NOI18N
+        pesquisar.setForeground(new java.awt.Color(51, 51, 51));
+        pesquisar.setText("Pesquisar");
+        pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConquistaDAO conquistaDAO = new ConquistaDAO();
+                if(idConquista.getText() != null) {
+                    try {
+                        ConquistaDTO conquistaDTO = new ConquistaDTO();
+                        conquistaDTO = conquistaDAO.getConquistaById(Integer.parseInt(idConquista.getText()));
+                        if(conquistaDTO != null) {
+                            dadoConquista.setText(String.valueOf(conquistaDTO.getDadoConquista()));
+                            tipoConquista.setText(String.valueOf(conquistaDTO.getTipoConquista()));
+                            tituloConquista.setText(conquistaDTO.getTitulo());
+                            descricaoConquista.setText(conquistaDTO.getDescricao());
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        getContentPane().add(pesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 100, 80, -1));
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 0));
-        jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ID Conquista:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(51, 51, 255))); // NOI18N
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 220, 50));
+        idConquista.setBackground(new java.awt.Color(36, 58, 115));
+        idConquista.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ID Conquista:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        getContentPane().add(idConquista, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 220, -1));
+        
+        dadoConquista.setBackground(new java.awt.Color(51, 51, 51));
+        dadoConquista.setForeground(new java.awt.Color(255, 255, 204));
+        dadoConquista.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dado Conquista:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        getContentPane().add(dadoConquista, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 200, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 0));
-        jButton1.setFont(new java.awt.Font("Leelawadee UI", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 51, 204));
-        jButton1.setText("Pesquisar");
+        tipoConquista.setBackground(new java.awt.Color(51, 51, 51));
+        tipoConquista.setForeground(new java.awt.Color(255, 255, 204));
+        tipoConquista.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo Conquista:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        getContentPane().add(tipoConquista, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 200, -1));
+
+        tituloConquista.setBackground(new java.awt.Color(51, 51, 51));
+        tituloConquista.setForeground(new java.awt.Color(255, 255, 204));
+        tituloConquista.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Título Conquista:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        getContentPane().add(tituloConquista, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 200, -1));
+
+        descricaoConquista.setBackground(new java.awt.Color(51, 51, 51));
+        descricaoConquista.setForeground(new java.awt.Color(255, 255, 204));
+        descricaoConquista.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descrição Conquista:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        getContentPane().add(descricaoConquista, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 200, -1));
+
+        criar.setBackground(new java.awt.Color(0, 153, 204));
+        criar.setText("Criar/ Atualizar");
+        criar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConquistaDAO conquistaDAO = new ConquistaDAO();
+                if(conquistaDAO.conquistaExists(Integer.parseInt(idConquista.getText()))) {
+                    conquistaDAO.updateConquista(Integer.parseInt(idConquista.getText()), Double.parseDouble(dadoConquista.getText()), Boolean.parseBoolean(tipoConquista.getText()), tituloConquista.getText(), descricaoConquista.getText());
+                } else {
+                    conquistaDAO.createConquista(Double.parseDouble(dadoConquista.getText()), Boolean.parseBoolean(tipoConquista.getText()), tituloConquista.getText(), descricaoConquista.getText());
+                }
+                frmCriarConquista.this.dispose();
+            }
+        });
+        getContentPane().add(criar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 110, 30));
+
+        jButton1 = new javax.swing.JButton();
+        jButton1.setBackground(new java.awt.Color(200, 0, 0));
+        jButton1.setFont(new java.awt.Font("Lucida Console", 1, 12)); // NOI18N
+        jButton1.setText("Voltar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                frmCriarConquista.this.dispose();
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 80, -1));
-
-        jTextField7.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField7.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Título Conquista:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 200, 40));
-
-        jTextField4.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField4.setForeground(new java.awt.Color(255, 255, 204));
-        jTextField4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dado Conquista:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 200, 40));
-
-        jTextField5.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField5.setForeground(new java.awt.Color(255, 255, 204));
-        jTextField5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descrição Conquista:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 200, 40));
-
-        jTextField6.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField6.setForeground(new java.awt.Color(255, 255, 204));
-        jTextField6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo Conquista:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 200, 40));
-
-        jButton2.setBackground(new java.awt.Color(0, 153, 204));
-        jButton2.setText("Criar/ Atualizar");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 110, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, -1, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VIEW/perfil.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 330));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -151,13 +198,14 @@ public class frmCriarConquista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton pesquisar;
+    private javax.swing.JButton criar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField idConquista;
+    private javax.swing.JTextField dadoConquista;
+    private javax.swing.JTextField descricaoConquista;
+    private javax.swing.JTextField tipoConquista;
+    private javax.swing.JTextField tituloConquista;
     // End of variables declaration//GEN-END:variables
 }

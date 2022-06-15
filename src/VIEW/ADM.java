@@ -48,7 +48,7 @@ public class ADM extends JFrame {
 		setBackground(Color.BLACK);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 0, 1100, 734);
+		setBounds(100, 0, 1100, 745);
 		setUndecorated(false);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
@@ -58,7 +58,7 @@ public class ADM extends JFrame {
 		
 		JPanel panelMenu = new JPanel();
 		panelMenu.setBackground(Color.DARK_GRAY);
-		panelMenu.setBounds(0, -10, 268, 713);
+		panelMenu.setBounds(0, -10, 268, 745);
 		contentPane.add(panelMenu);
 		panelMenu.setLayout(null);
 		

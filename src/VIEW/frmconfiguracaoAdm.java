@@ -51,8 +51,8 @@ public class frmconfiguracaoAdm extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        editarFases = new javax.swing.JButton();
+        editarConquistas = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         botaoVoltar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -66,16 +66,6 @@ public class frmconfiguracaoAdm extends javax.swing.JFrame {
         jLabel1.setText("Edição de Níveis ");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 350, 62));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 51));
-        jButton1.setFont(new java.awt.Font("Lucida Console", 1, 12)); // NOI18N
-        jButton1.setText("Editar Fases");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 200, 30));
-
         botaoVoltar.setBackground(new java.awt.Color(200, 0, 0));
         botaoVoltar.setFont(new java.awt.Font("Lucida Console", 1, 12)); // NOI18N
         botaoVoltar.setText("Voltar");
@@ -84,30 +74,32 @@ public class frmconfiguracaoAdm extends javax.swing.JFrame {
                 frmconfiguracaoAdm.this.dispose();
             }
         });
-        getContentPane().add(botaoVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, -1, 30));
+        getContentPane().add(botaoVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, -1, 30));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 51));
-        jButton2.setFont(new java.awt.Font("Lucida Console", 1, 12)); // NOI18N
-        jButton2.setText("Criar Fases");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 200, 30));
-
-        jButton3.setBackground(new java.awt.Color(255, 255, 51));
-        jButton3.setFont(new java.awt.Font("Lucida Console", 1, 12)); // NOI18N
-        jButton3.setText("Editar Conquistas");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 200, 30));
-
-        jButton4.setBackground(new java.awt.Color(255, 255, 51));
-        jButton4.setFont(new java.awt.Font("Lucida Console", 1, 12)); // NOI18N
-        jButton4.setText("Criar Conquistas");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        editarFases.setBackground(new java.awt.Color(255, 255, 51));
+        editarFases.setFont(new java.awt.Font("Lucida Console", 1, 12)); // NOI18N
+        editarFases.setText("Editar Fases");
+        editarFases.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                frmCriarQuestao objCriarQuestao = new frmCriarQuestao();
+                objCriarQuestao.setVisible(true);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 200, 30));
+        getContentPane().add(editarFases, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 200, 30));
 
+        editarConquistas.setBackground(new java.awt.Color(255, 255, 51));
+        editarConquistas.setFont(new java.awt.Font("Lucida Console", 1, 12)); // NOI18N
+        editarConquistas.setText("Editar Conquistas");
+        editarConquistas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmCriarConquista objCriarConquista = new frmCriarConquista();
+                objCriarConquista.setVisible(true);
+            }
+        });
+        getContentPane().add(editarConquistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 200, 30));
+ 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VIEW/imagem confi.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-100, -10, 550, 360));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-100, -10, 550, 330));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -157,8 +149,8 @@ public class frmconfiguracaoAdm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton editarFases;
+    private javax.swing.JButton editarConquistas;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton botaoVoltar;
     private javax.swing.JLabel jLabel1;
